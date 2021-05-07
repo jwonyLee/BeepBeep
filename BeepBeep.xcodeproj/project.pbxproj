@@ -116,6 +116,35 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		87531C892645736E009644EE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		87531C8A26457384009644EE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8793FDFF26441F8600F8578C /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		87531C8B264573A7009644EE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		87531C8C264573AE009644EE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		8793FDEF26441F8600F8578C = {
 			isa = PBXGroup;
 			children = (
@@ -144,11 +173,14 @@
 			children = (
 				8793FDFB26441F8600F8578C /* AppDelegate.swift */,
 				8793FDFD26441F8600F8578C /* SceneDelegate.swift */,
-				8793FDFF26441F8600F8578C /* ViewController.swift */,
 				8793FE0726441F8800F8578C /* Assets.xcassets */,
 				8793FE0926441F8800F8578C /* LaunchScreen.storyboard */,
 				8793FE0C26441F8800F8578C /* Info.plist */,
 				8793FE0426441F8600F8578C /* BeepBeep.xcdatamodeld */,
+				87531C892645736E009644EE /* Model */,
+				87531C8B264573A7009644EE /* ViewModel */,
+				87531C8A26457384009644EE /* ViewController */,
+				87531C8C264573AE009644EE /* Utilities */,
 			);
 			path = BeepBeep;
 			sourceTree = "<group>";
