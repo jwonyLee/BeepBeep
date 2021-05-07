@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2CFEC8CB2618653DB994076D /* Pods_BeepBeep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9357CFE3DF64831F31DC8D /* Pods_BeepBeep.framework */; };
 		84BE59AF918F93AD7210BC28 /* Pods_BeepBeep_BeepBeepUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D362CC3DD84D29946DF53D /* Pods_BeepBeep_BeepBeepUITests.framework */; };
+		87531C8826457016009644EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87531C8726457016009644EE /* .swiftlint.yml */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
 		8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFD26441F8600F8578C /* SceneDelegate.swift */; };
 		8793FE0026441F8600F8578C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFF26441F8600F8578C /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 		1B9357CFE3DF64831F31DC8D /* Pods_BeepBeep.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeepBeep.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5043A3E1C383B7C25A043E4D /* Pods-BeepBeepTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeepTests.debug.xcconfig"; path = "Target Support Files/Pods-BeepBeepTests/Pods-BeepBeepTests.debug.xcconfig"; sourceTree = "<group>"; };
 		73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeepBeepTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87531C8726457016009644EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FDFB26441F8600F8578C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8793FDFD26441F8600F8578C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,13 +115,13 @@
 				5043A3E1C383B7C25A043E4D /* Pods-BeepBeepTests.debug.xcconfig */,
 				D582848521A95D08675A523D /* Pods-BeepBeepTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		8793FDEF26441F8600F8578C = {
 			isa = PBXGroup;
 			children = (
+				87531C8726457016009644EE /* .swiftlint.yml */,
 				8793FDFA26441F8600F8578C /* BeepBeep */,
 				8793FE1426441F8800F8578C /* BeepBeepTests */,
 				8793FE1F26441F8800F8578C /* BeepBeepUITests */,
@@ -184,6 +186,7 @@
 				8793FDF526441F8600F8578C /* Frameworks */,
 				8793FDF626441F8600F8578C /* Resources */,
 				00198FA779170D53A84E6019 /* [CP] Embed Pods Frameworks */,
+				87531C8626456F3E009644EE /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -280,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87531C8826457016009644EE /* .swiftlint.yml in Resources */,
 				8793FE0B26441F8800F8578C /* LaunchScreen.storyboard in Resources */,
 				8793FE0826441F8800F8578C /* Assets.xcassets in Resources */,
 				8793FE0326441F8600F8578C /* Main.storyboard in Resources */,
@@ -380,6 +384,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeepBeep-BeepBeepUITests/Pods-BeepBeep-BeepBeepUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		87531C8626456F3E009644EE /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
 		87A16C491E185ABAEFB9E49D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
