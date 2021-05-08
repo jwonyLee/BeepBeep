@@ -145,6 +145,13 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		87531C8D26457647009644EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8793FDEF26441F8600F8578C = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +185,7 @@
 				8793FE0C26441F8800F8578C /* Info.plist */,
 				8793FE0426441F8600F8578C /* BeepBeep.xcdatamodeld */,
 				87531C892645736E009644EE /* Model */,
+				87531C8D26457647009644EE /* View */,
 				87531C8B264573A7009644EE /* ViewModel */,
 				87531C8A26457384009644EE /* ViewController */,
 				87531C8C264573AE009644EE /* Utilities */,

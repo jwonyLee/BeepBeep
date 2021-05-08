@@ -11,7 +11,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
 
+        view.backgroundColor = .white
+        configureNavigation()
+    }
+}
+
+// MARK: - Private
+private extension ViewController {
+    func configureNavigation() {
+        self.title = "BeepBeep"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
