@@ -19,7 +19,7 @@ class CollectionsCell: UICollectionViewCell {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         $0.text = "🌩"
-        $0.textColor = .black
+        $0.textColor = .label
     }
 
     private var nameLabel = UILabel().then {
@@ -28,14 +28,14 @@ class CollectionsCell: UICollectionViewCell {
         $0.text = "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum"
         $0.numberOfLines = 1
         $0.textAlignment = .left
-        $0.textColor = .black
+        $0.textColor = .label
     }
 
     private var countLabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .subheadline)
         $0.text = "17"
-        $0.textColor = .black
+        $0.textColor = .label
     }
 
     override init(frame: CGRect) {
