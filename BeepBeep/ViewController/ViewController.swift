@@ -8,23 +8,33 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
 
     // MARK: - View Properties
     private let progressView = RoundView().then {
-        $0.backgroundColor = .lightGray
+        $0.backgroundColor = UIColor(named: "BeepGray")
     }
 
-    private var collectionView: UICollectionView?
+    private let collectionHeaderLabel = UILabel().then {
+        $0.text = "모음집"
+        $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+    }
+
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+
         configureNavigation()
         configureViews()
+        setCollectionView()
         setProgressViewConstraints()
+        setCollectionHeaderLabelConstraints()
         setCollectionViewConstraints()
     }
 }
@@ -38,14 +48,15 @@ private extension ViewController {
 
     func configureViews() {
         view.addSubview(progressView)
-
-        /* set collectionView */
-        let flowLayout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: flowLayout)
-        guard let collectionView = collectionView else {
-            fatalError("Error: collectionView is not been initialized")
-        }
+        view.addSubview(collectionHeaderLabel)
         view.addSubview(collectionView)
+    }
+
+    func setCollectionView() {
+        collectionView.backgroundColor = .none
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.identifier)
     }
 
     func setProgressViewConstraints() {
@@ -57,13 +68,18 @@ private extension ViewController {
         }
     }
 
-    func setCollectionViewConstraints() {
-        guard let collectionView = collectionView else {
-            fatalError("Error: collectionView is not been initialized")
+    func setCollectionHeaderLabelConstraints() {
+        collectionHeaderLabel.snp.makeConstraints {
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
+            $0.top.equalTo(progressView.snp.bottom).offset(32)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
         }
+    }
+
+    func setCollectionViewConstraints() {
         collectionView.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
-            $0.top.equalTo(progressView.snp.bottom).offset(16)
+            $0.top.equalTo(collectionHeaderLabel.snp.bottom).offset(16)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
         }
@@ -72,11 +88,35 @@ private extension ViewController {
 
 // MARK: - CollectionView Datasource
 extension ViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionsCell.identifier, for: indexPath) as? CollectionsCell else {
+            return CollectionsCell()
+        }
+
+        return cell
+    }
+}
+
+// MARK: - CollectionView FlowLayout Delegate
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 72)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
 }
