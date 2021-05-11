@@ -25,6 +25,23 @@ class ViewController: UIViewController {
 
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
+    private var newCollectionsButton = UIButton().then {
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.titleLabel?.numberOfLines = 1
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.backgroundColor = .label
+        $0.setImage(UIImage(systemName: "folder.badge.plus"), for: .normal)
+        $0.tintColor = .systemBackground
+        $0.setTitle("새 모음집", for: .normal)
+        $0.setTitleColor(.systemBackground, for: .normal)
+        $0.semanticContentAttribute = .forceLeftToRight
+        $0.contentVerticalAlignment = .center
+        $0.contentHorizontalAlignment = .leading
+        $0.clipsToBounds = true
+        $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 24)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +53,12 @@ class ViewController: UIViewController {
         setProgressViewConstraints()
         setCollectionHeaderLabelConstraints()
         setCollectionViewConstraints()
+        setCreateCollectionsButtonConstraints()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        newCollectionsButton.layer.cornerRadius = newCollectionsButton.frame.size.height / 2
     }
 }
 
@@ -50,6 +73,7 @@ private extension ViewController {
         view.addSubview(progressView)
         view.addSubview(collectionHeaderLabel)
         view.addSubview(collectionView)
+        view.addSubview(newCollectionsButton)
     }
 
     func setCollectionView() {
@@ -80,6 +104,13 @@ private extension ViewController {
         collectionView.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.top.equalTo(collectionHeaderLabel.snp.bottom).offset(16)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+    }
+
+    func setCreateCollectionsButtonConstraints() {
+        newCollectionsButton.snp.makeConstraints {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
         }
