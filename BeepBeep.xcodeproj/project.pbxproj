@@ -17,6 +17,9 @@
 		8793FE0B26441F8800F8578C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8793FE0926441F8800F8578C /* LaunchScreen.storyboard */; };
 		8793FE1626441F8800F8578C /* BeepBeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FE1526441F8800F8578C /* BeepBeepTests.swift */; };
 		8793FE2126441F8800F8578C /* BeepBeepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FE2026441F8800F8578C /* BeepBeepUITests.swift */; };
+		87DCC2B1264D69D4008FE490 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B0264D69D4008FE490 /* Category.swift */; };
+		87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B2264D6BFF008FE490 /* Item.swift */; };
+		87DCC2B5264D6C06008FE490 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B4264D6C06008FE490 /* Record.swift */; };
 		9A333AE5EB64640232A3DABD /* Pods_BeepBeepTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		8793FE1C26441F8800F8578C /* BeepBeepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeepBeepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FE2026441F8800F8578C /* BeepBeepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeepBeepUITests.swift; sourceTree = "<group>"; };
 		8793FE2226441F8800F8578C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87DCC2B0264D69D4008FE490 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		87DCC2B2264D6BFF008FE490 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		87DCC2B4264D6C06008FE490 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		925C829051D74A86CCC11AB2 /* Pods-BeepBeep.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeep.release.xcconfig"; path = "Target Support Files/Pods-BeepBeep/Pods-BeepBeep.release.xcconfig"; sourceTree = "<group>"; };
 		A886C989FECBB5C43DA9948D /* Pods-BeepBeep-BeepBeepUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeep-BeepBeepUITests.release.xcconfig"; path = "Target Support Files/Pods-BeepBeep-BeepBeepUITests/Pods-BeepBeep-BeepBeepUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B5027AFBC48D1F44D39B84EF /* Pods-BeepBeep-BeepBeepUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeep-BeepBeepUITests.debug.xcconfig"; path = "Target Support Files/Pods-BeepBeep-BeepBeepUITests/Pods-BeepBeep-BeepBeepUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +202,9 @@
 		87DCC2AD264D696A008FE490 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				87DCC2B0264D69D4008FE490 /* Category.swift */,
+				87DCC2B2264D6BFF008FE490 /* Item.swift */,
+				87DCC2B4264D6C06008FE490 /* Record.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,9 +466,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
 				8793FE0026441F8600F8578C /* ViewController.swift in Sources */,
+				87DCC2B5264D6C06008FE490 /* Record.swift in Sources */,
 				8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */,
 				8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */,
+				87DCC2B1264D69D4008FE490 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
