@@ -13,11 +13,13 @@
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
 		8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFD26441F8600F8578C /* SceneDelegate.swift */; };
 		8793FE0026441F8600F8578C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFF26441F8600F8578C /* ViewController.swift */; };
-		8793FE0626441F8600F8578C /* BeepBeep.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8793FE0426441F8600F8578C /* BeepBeep.xcdatamodeld */; };
 		8793FE0826441F8800F8578C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8793FE0726441F8800F8578C /* Assets.xcassets */; };
 		8793FE0B26441F8800F8578C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8793FE0926441F8800F8578C /* LaunchScreen.storyboard */; };
 		8793FE1626441F8800F8578C /* BeepBeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FE1526441F8800F8578C /* BeepBeepTests.swift */; };
 		8793FE2126441F8800F8578C /* BeepBeepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FE2026441F8800F8578C /* BeepBeepUITests.swift */; };
+		87DCC2B1264D69D4008FE490 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B0264D69D4008FE490 /* Category.swift */; };
+		87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B2264D6BFF008FE490 /* Item.swift */; };
+		87DCC2B5264D6C06008FE490 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B4264D6C06008FE490 /* Record.swift */; };
 		87C3C2C52646E27C007E7B8E /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C3C2C42646E27C007E7B8E /* RoundView.swift */; };
 		87E87B262649414D007412F9 /* CollectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E87B252649414C007412F9 /* CollectionsCell.swift */; };
 		9A333AE5EB64640232A3DABD /* Pods_BeepBeepTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */; };
@@ -50,7 +52,6 @@
 		8793FDFB26441F8600F8578C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8793FDFD26441F8600F8578C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8793FDFF26441F8600F8578C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8793FE0526441F8600F8578C /* BeepBeep.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BeepBeep.xcdatamodel; sourceTree = "<group>"; };
 		8793FE0726441F8800F8578C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8793FE0A26441F8800F8578C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8793FE0C26441F8800F8578C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +61,9 @@
 		8793FE1C26441F8800F8578C /* BeepBeepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeepBeepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FE2026441F8800F8578C /* BeepBeepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeepBeepUITests.swift; sourceTree = "<group>"; };
 		8793FE2226441F8800F8578C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87DCC2B0264D69D4008FE490 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		87DCC2B2264D6BFF008FE490 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		87DCC2B4264D6C06008FE490 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		87C3C2C42646E27C007E7B8E /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		87E87B252649414C007412F9 /* CollectionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCell.swift; sourceTree = "<group>"; };
 		925C829051D74A86CCC11AB2 /* Pods-BeepBeep.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeep.release.xcconfig"; path = "Target Support Files/Pods-BeepBeep/Pods-BeepBeep.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,13 +124,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		87531C892645736E009644EE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		87531C8A26457384009644EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +181,7 @@
 		8793FDFA26441F8600F8578C /* BeepBeep */ = {
 			isa = PBXGroup;
 			children = (
+				87DCC2AD264D696A008FE490 /* Model */,
 				8793FDFB26441F8600F8578C /* AppDelegate.swift */,
 				8793FDFD26441F8600F8578C /* SceneDelegate.swift */,
 				8793FE0726441F8800F8578C /* Assets.xcassets */,
@@ -215,6 +213,16 @@
 				8793FE2226441F8800F8578C /* Info.plist */,
 			);
 			path = BeepBeepUITests;
+			sourceTree = "<group>";
+		};
+		87DCC2AD264D696A008FE490 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				87DCC2B0264D69D4008FE490 /* Category.swift */,
+				87DCC2B2264D6BFF008FE490 /* Item.swift */,
+				87DCC2B4264D6C06008FE490 /* Record.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,10 +482,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
 				8793FE0026441F8600F8578C /* ViewController.swift in Sources */,
-				8793FE0626441F8600F8578C /* BeepBeep.xcdatamodeld in Sources */,
+				87DCC2B5264D6C06008FE490 /* Record.swift in Sources */,
 				8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */,
 				8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */,
+				87DCC2B1264D69D4008FE490 /* Category.swift in Sources */,
 				87C3C2C52646E27C007E7B8E /* RoundView.swift in Sources */,
 				87E87B262649414D007412F9 /* CollectionsCell.swift in Sources */,
 			);
@@ -810,19 +820,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		8793FE0426441F8600F8578C /* BeepBeep.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8793FE0526441F8600F8578C /* BeepBeep.xcdatamodel */,
-			);
-			currentVersion = 8793FE0526441F8600F8578C /* BeepBeep.xcdatamodel */;
-			path = BeepBeep.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 8793FDF026441F8600F8578C /* Project object */;
 }
