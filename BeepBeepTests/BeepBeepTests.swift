@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import RealmSwift
 @testable import BeepBeep
 
 class BeepBeepTests: XCTestCase {
@@ -30,4 +31,39 @@ class BeepBeepTests: XCTestCase {
         }
     }
 
+    func testCreateCategory() throws {
+        let newCategory = Category()
+        newCategory.name = "apple"
+        newCategory.emoji = "🍎"
+
+        // Create
+        let realm = try! Realm()
+        do {
+            try realm.write {
+                realm.add(newCategory)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+
+        // Read
+        let c = realm.objects(Category.self)
+        XCTAssertEqual(1, c.count)
+    }
+
+    func testUpdateCategory() throws {
+        let realm = try! Realm()
+        let before = realm.objects(Category.self)
+
+        do {
+            try realm.write {
+                before[0].name = "samsung"
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+
+        let after = realm.objects(Category.self)
+        XCTAssertEqual(after[0].name, "samsung")
+    }
 }
