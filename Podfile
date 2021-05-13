@@ -11,6 +11,7 @@ target 'BeepBeep' do
   pod 'SwiftLint'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Then'
+  pod 'RealmSwift'
 
   target 'BeepBeepTests' do
     inherit! :search_paths
