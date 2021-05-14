@@ -14,17 +14,17 @@ class CreateCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .systemBackground
+
+        configureNavigation()
     }
+}
 
-    /*
-    // MARK: - Navigation
+private extension CreateCategoryViewController {
+    func configureNavigation() {
+        self.title = "🗂 새 모음집 만들기"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: nil)
     }
-    */
-
 }
