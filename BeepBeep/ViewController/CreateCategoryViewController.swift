@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import ISEmojiView
 
 class CreateCategoryViewController: UIViewController {
 
@@ -52,6 +53,12 @@ class CreateCategoryViewController: UIViewController {
         setNameLabelConstraints()
         setNameFieldConstraints()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        emojiField.becomeFirstResponder()
+    }
 }
 
 private extension CreateCategoryViewController {
@@ -69,7 +76,11 @@ private extension CreateCategoryViewController {
     }
 
     func configureEmojiField() {
-        emojiField.delegate = self
+        let keyboardSettings = KeyboardSettings(bottomType: .categories)
+        let emojiView = EmojiView(keyboardSettings: keyboardSettings)
+        emojiView.translatesAutoresizingMaskIntoConstraints = false
+        emojiView.delegate = self
+        emojiField.inputView = emojiView
     }
 
     func setEmojiFieldConstraints() {
@@ -99,14 +110,26 @@ private extension CreateCategoryViewController {
     }
 }
 
-extension CreateCategoryViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let textFieldText = textField.text,
-              let rangeOfTextToReplace = Range(range, in: textFieldText) else {
-            return false
-        }
-        let substringToReplace = textFieldText[rangeOfTextToReplace]
-        let count = textFieldText.count - substringToReplace.count + string.count
-        return count <= 1
+extension CreateCategoryViewController: EmojiViewDelegate {
+    // callback when tap a emoji on keyboard
+    func emojiViewDidSelectEmoji(_ emoji: String, emojiView: EmojiView) {
+        emojiField.text = emoji
+    }
+
+    // callback when tap change keyboard button on keyboard
+    func emojiViewDidPressChangeKeyboardButton(_ emojiView: EmojiView) {
+        emojiField.inputView = nil
+        emojiField.keyboardType = .default
+        emojiField.reloadInputViews()
+    }
+
+    // callback when tap delete button on keyboard
+    func emojiViewDidPressDeleteBackwardButton(_ emojiView: EmojiView) {
+        emojiField.deleteBackward()
+    }
+
+    // callback when tap dismiss button on keyboard
+    func emojiViewDidPressDismissKeyboardButton(_ emojiView: EmojiView) {
+        emojiField.resignFirstResponder()
     }
 }
