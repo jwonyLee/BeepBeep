@@ -18,7 +18,7 @@ private protocol RealmOperations {
     static func add<S: Sequence>(_ objects: S) where S.Iterator.Element: Object
 
     /// gets objects from Realm that satisfy the given predicate
-    static func get<R: Object>(fromEntity entity : R.Type, withPredicate predicate: NSPredicate?,
+    static func get<R: Object>(fromEntity entity: R.Type, withPredicate predicate: NSPredicate?,
                                sortedByKey sortKey: String?, inAscending isAscending: Bool) -> Results<R>
 
     /// deletes a single object from Realm
@@ -36,9 +36,9 @@ private protocol RealmOperations {
 
 class RealmManager {
 
-    // MARK:- functions
+    // MARK: - functions
     static func realmConfig() -> Realm.Configuration {
-        return Realm.Configuration(schemaVersion: 2, migrationBlock: { (migration, oldSchemaVersion) in
+        return Realm.Configuration(schemaVersion: 2, migrationBlock: { (_, _) in
             /// Migration block. Useful when you upgrade the schema version.
 
         })
@@ -77,7 +77,7 @@ extension RealmManager: RealmOperations {
         }
     }
 
-    // MARK:- ADD functions
+    // MARK: - ADD functions
     /// adds an object to Realm
     static func add(_ object: Object) {
         Self.write { (realmInstance, _) in
@@ -92,9 +92,8 @@ extension RealmManager: RealmOperations {
         }
     }
 
-
-    // MARK:- GET function
-    static func get<R: Object>(fromEntity entity : R.Type, withPredicate predicate: NSPredicate? = nil, sortedByKey sortKey: String? = nil, inAscending isAscending: Bool = true) -> Results<R> {
+    // MARK: - GET function
+    static func get<R: Object>(fromEntity entity: R.Type, withPredicate predicate: NSPredicate? = nil, sortedByKey sortKey: String? = nil, inAscending isAscending: Bool = true) -> Results<R> {
         var objects = realmInstance().objects(entity)
         if predicate != nil {
             objects = objects.filter(predicate!)
@@ -106,7 +105,7 @@ extension RealmManager: RealmOperations {
         return objects
     }
 
-    // MARK:- DELETE functions
+    // MARK: - DELETE functions
     static func delete(_ object: Object) {
         Self.write(object) { (realmInstance, newObject) in
             guard let newObject = newObject, !newObject.isInvalidated else {
@@ -128,7 +127,7 @@ extension RealmManager: RealmOperations {
         Self.delete(Self.get(fromEntity: entity, withPredicate: predicate))
     }
 
-    // MARK:- UPDATE function
+    // MARK: - UPDATE function
     static func update<T: Object>(_ object: T, block: @escaping ((T) -> Void)) {
         guard !object.isInvalidated else {
             return
