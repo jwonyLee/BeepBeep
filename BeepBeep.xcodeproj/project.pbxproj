@@ -189,6 +189,7 @@
 				8793FE0726441F8800F8578C /* Assets.xcassets */,
 				8793FE0926441F8800F8578C /* LaunchScreen.storyboard */,
 				8793FE0C26441F8800F8578C /* Info.plist */,
+                87DCC2AD264D696A008FE490 /* Model */,
 				87531C8D26457647009644EE /* View */,
 				87531C8B264573A7009644EE /* ViewModel */,
 				87531C8A26457384009644EE /* ViewController */,
