@@ -18,14 +18,14 @@ class ViewController: UIViewController {
         $0.backgroundColor = UIColor(named: "BeepGray")
     }
 
-    private let collectionHeaderLabel = UILabel().then {
+    private let categoryHeaderLabel = UILabel().then {
         $0.text = "모음집"
         $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
     }
 
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    private var newCollectionsButton = UIButton().then {
+    private var newCategoryButton = UIButton().then {
         $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.titleLabel?.numberOfLines = 1
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
@@ -51,14 +51,14 @@ class ViewController: UIViewController {
         configureViews()
         setCollectionView()
         setProgressViewConstraints()
-        setCollectionHeaderLabelConstraints()
+        setCategoryHeaderLabelConstraints()
         setCollectionViewConstraints()
-        setCreateCollectionsButtonConstraints()
+        setNewCategoryButtonConstraints()
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        newCollectionsButton.layer.cornerRadius = newCollectionsButton.frame.size.height / 2
+        newCategoryButton.layer.cornerRadius = newCategoryButton.frame.size.height / 2
     }
 }
 
@@ -71,9 +71,11 @@ private extension ViewController {
 
     func configureViews() {
         view.addSubview(progressView)
-        view.addSubview(collectionHeaderLabel)
+        view.addSubview(categoryHeaderLabel)
         view.addSubview(collectionView)
-        view.addSubview(newCollectionsButton)
+        view.addSubview(newCategoryButton)
+
+        newCategoryButton.addTarget(self, action: #selector(createCategory), for: .touchUpInside)
     }
 
     func setCollectionView() {
@@ -92,8 +94,8 @@ private extension ViewController {
         }
     }
 
-    func setCollectionHeaderLabelConstraints() {
-        collectionHeaderLabel.snp.makeConstraints {
+    func setCategoryHeaderLabelConstraints() {
+        categoryHeaderLabel.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.top.equalTo(progressView.snp.bottom).offset(32)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
@@ -103,17 +105,21 @@ private extension ViewController {
     func setCollectionViewConstraints() {
         collectionView.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
-            $0.top.equalTo(collectionHeaderLabel.snp.bottom).offset(16)
+            $0.top.equalTo(categoryHeaderLabel.snp.bottom).offset(16)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 
-    func setCreateCollectionsButtonConstraints() {
-        newCollectionsButton.snp.makeConstraints {
+    func setNewCategoryButtonConstraints() {
+        newCategoryButton.snp.makeConstraints {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
         }
+    }
+
+    @objc func createCategory() {
+        self.navigationController?.pushViewController(CreateCategoryViewController(), animated: true)
     }
 }
 
