@@ -184,7 +184,6 @@
 		8793FDFA26441F8600F8578C /* BeepBeep */ = {
 			isa = PBXGroup;
 			children = (
-				87DCC2AD264D696A008FE490 /* Model */,
 				8793FDFB26441F8600F8578C /* AppDelegate.swift */,
 				8793FDFD26441F8600F8578C /* SceneDelegate.swift */,
 				8793FE0726441F8800F8578C /* Assets.xcassets */,
