@@ -136,7 +136,14 @@ private extension CreateCategoryViewController {
     func bindOutput() {
         viewModel.output.errorsObservable
             .subscribe(onNext: { error in
-                print(error.localizedDescription)
+                switch error {
+                case .isEmojiFieldEmpty:
+                    break
+                case .isNameFiledEmpty:
+                    break
+                case .duplicateName:
+                    break
+                }
             })
             .disposed(by: disposeBag)
 

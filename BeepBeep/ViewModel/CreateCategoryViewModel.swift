@@ -10,6 +10,12 @@ import RxSwift
 import RxCocoa
 import RealmSwift
 
+enum CreateCategoryError: Error {
+    case isEmojiFieldEmpty
+    case isNameFiledEmpty
+    case duplicateName
+}
+
 class CreateCategoryViewModel {
 
     struct Input {
@@ -19,7 +25,7 @@ class CreateCategoryViewModel {
     }
 
     struct Output {
-        let errorsObservable: Observable<Error>
+        let errorsObservable: Observable<CreateCategoryError>
         let didPopObservable: Observable<Void>
     }
 
@@ -31,8 +37,22 @@ class CreateCategoryViewModel {
     private let emojiSubject = PublishSubject<String>()
     private let nameSubject = PublishSubject<String>()
     private let saveDidTapSubject = PublishSubject<Void>()
-    private let errorsSubject = PublishSubject<Error>()
+    private let errorsSubject = PublishSubject<CreateCategoryError>()
     private let didPopSubject = PublishSubject<Void>()
+
+    private var isEmojiFieldEmptyObservable: Observable<Bool> {
+        return emojiSubject.asObserver()
+            .take(1)
+            .map { $0.isEmpty }
+            .asObservable()
+    }
+
+    private var isNameFieldEmptyObservable: Observable<Bool> {
+        return nameSubject.asObserver()
+            .take(1)
+            .map { $0.isEmpty }
+            .asObservable()
+    }
 
     private var categoryObservable: Observable<Category> {
         return Observable.combineLatest(emojiSubject.asObserver(), nameSubject.asObserver()) { (emoji, name) in
@@ -50,6 +70,26 @@ class CreateCategoryViewModel {
                         didPopObservable: didPopSubject.asObservable())
 
         saveDidTapSubject
+            .withLatestFrom(isEmojiFieldEmptyObservable)
+            .filter { $0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.errorsSubject.onNext(CreateCategoryError.isEmojiFieldEmpty)
+            })
+            .disposed(by: disposeBag)
+
+        saveDidTapSubject
+            .withLatestFrom(isNameFieldEmptyObservable)
+            .filter { $0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.errorsSubject.onNext(CreateCategoryError.isNameFiledEmpty)
+            })
+            .disposed(by: disposeBag)
+
+        saveDidTapSubject
+            .withLatestFrom(isEmojiFieldEmptyObservable)
+            .filter { !$0 }
+            .withLatestFrom(isNameFieldEmptyObservable)
+            .filter { !$0 }
             .withLatestFrom(categoryObservable)
             .subscribe(onNext: { [weak self] category in
                 self?.saveCategory(newCategory: category)
