@@ -10,6 +10,7 @@
 		2CFEC8CB2618653DB994076D /* Pods_BeepBeep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9357CFE3DF64831F31DC8D /* Pods_BeepBeep.framework */; };
 		84BE59AF918F93AD7210BC28 /* Pods_BeepBeep_BeepBeepUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D362CC3DD84D29946DF53D /* Pods_BeepBeep_BeepBeepUITests.framework */; };
 		8707BF6D26523C89004B082E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF6C26523C89004B082E /* RealmManager.swift */; };
+		8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */; };
 		87531C8826457016009644EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87531C8726457016009644EE /* .swiftlint.yml */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
 		8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFD26441F8600F8578C /* SceneDelegate.swift */; };
@@ -50,6 +51,7 @@
 		5043A3E1C383B7C25A043E4D /* Pods-BeepBeepTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeepTests.debug.xcconfig"; path = "Target Support Files/Pods-BeepBeepTests/Pods-BeepBeepTests.debug.xcconfig"; sourceTree = "<group>"; };
 		73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeepBeepTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8707BF6C26523C89004B082E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewModel.swift; sourceTree = "<group>"; };
 		87531C8726457016009644EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FDFB26441F8600F8578C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		8707BF6926523A2F004B082E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 			files = (
 				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
 				8793FE0026441F8600F8578C /* ViewController.swift in Sources */,
+				8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */,
 				8707BF6D26523C89004B082E /* RealmManager.swift in Sources */,
 				87DCC2B5264D6C06008FE490 /* Record.swift in Sources */,
 				8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */,

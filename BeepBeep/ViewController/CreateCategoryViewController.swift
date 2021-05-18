@@ -9,8 +9,13 @@ import UIKit
 import SnapKit
 import Then
 import ISEmojiView
+import RxSwift
+import RxCocoa
 
 class CreateCategoryViewController: UIViewController {
+
+    private let viewModel = CreateCategoryViewModel()
+    private var disposeBag = DisposeBag()
 
     private let emojiField = UITextField().then {
         $0.adjustsFontForContentSizeCategory = true
@@ -49,6 +54,8 @@ class CreateCategoryViewController: UIViewController {
         configureNavigation()
         configureViews()
         configureEmojiField()
+        bindInput()
+        bindOutput()
         setEmojiFieldConstraints()
         setNameLabelConstraints()
         setNameFieldConstraints()
@@ -107,6 +114,38 @@ private extension CreateCategoryViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
             $0.height.equalTo(64)
         }
+    }
+
+    func bindInput() {
+        emojiField.rx.text.orEmpty
+            .asObservable()
+            .subscribe(viewModel.input.emoji)
+            .disposed(by: disposeBag)
+
+        nameField.rx.text.orEmpty
+            .asObservable()
+            .subscribe(viewModel.input.name)
+            .disposed(by: disposeBag)
+
+        self.navigationItem.rightBarButtonItem!.rx.tap
+            .asObservable()
+            .subscribe(viewModel.input.saveDidTap)
+            .disposed(by: disposeBag)
+    }
+
+    func bindOutput() {
+        viewModel.output.errorsObservable
+            .subscribe(onNext: { error in
+                print(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.output.didPopObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] in
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

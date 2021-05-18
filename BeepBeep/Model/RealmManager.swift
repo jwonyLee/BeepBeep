@@ -38,10 +38,7 @@ class RealmManager {
 
     // MARK: - functions
     static func realmConfig() -> Realm.Configuration {
-        return Realm.Configuration(schemaVersion: 2, migrationBlock: { (_, _) in
-            /// Migration block. Useful when you upgrade the schema version.
-
-        })
+        return Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     }
 
     private static func realmInstance() -> Realm {
