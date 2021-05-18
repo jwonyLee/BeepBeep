@@ -36,6 +36,9 @@ private protocol RealmOperations {
 
 class RealmManager {
 
+    static let shared = RealmManager()
+    private init() { }
+
     // MARK: - functions
     static func realmConfig() -> Realm.Configuration {
         return Realm.Configuration(deleteRealmIfMigrationNeeded: true)
@@ -136,5 +139,17 @@ extension RealmManager: RealmOperations {
             }
             block(newObject)
         }
+    }
+}
+
+extension RealmManager {
+
+    // MARK: - functions
+    func findByCategory(query: String) -> [Category] {
+        let categories = RealmManager.get(fromEntity: Category.self,
+                                          withPredicate: NSPredicate(format: "name == %@", query),
+                                          sortedByKey: "name",
+                                          inAscending: true)
+        return Array(categories)
     }
 }

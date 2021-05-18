@@ -138,10 +138,13 @@ private extension CreateCategoryViewController {
             .subscribe(onNext: { error in
                 switch error {
                 case .isEmojiFieldEmpty:
+                    print("emoji is empty")
                     break
                 case .isNameFiledEmpty:
+                    print("name is empty")
                     break
                 case .duplicateName:
+                    print("duplicate name")
                     break
                 }
             })

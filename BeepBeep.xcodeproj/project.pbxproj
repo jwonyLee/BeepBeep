@@ -138,6 +138,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		8707BF732653E00C004B082E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8707BF6C26523C89004B082E /* RealmManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		87531C8A26457384009644EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +202,7 @@
 				8793FE0726441F8800F8578C /* Assets.xcassets */,
 				8793FE0926441F8800F8578C /* LaunchScreen.storyboard */,
 				8793FE0C26441F8800F8578C /* Info.plist */,
+				8707BF732653E00C004B082E /* Service */,
 				87DCC2AD264D696A008FE490 /* Model */,
 				8707BF6926523A2F004B082E /* ViewModel */,
 				87531C8D26457647009644EE /* View */,
@@ -227,7 +236,6 @@
 				87DCC2B0264D69D4008FE490 /* Category.swift */,
 				87DCC2B2264D6BFF008FE490 /* Item.swift */,
 				87DCC2B4264D6C06008FE490 /* Record.swift */,
-				8707BF6C26523C89004B082E /* RealmManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

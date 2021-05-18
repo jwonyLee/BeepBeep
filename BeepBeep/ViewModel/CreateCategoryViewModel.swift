@@ -42,15 +42,19 @@ class CreateCategoryViewModel {
 
     private var isEmojiFieldEmptyObservable: Observable<Bool> {
         return emojiSubject.asObserver()
-            .take(1)
             .map { $0.isEmpty }
             .asObservable()
     }
 
     private var isNameFieldEmptyObservable: Observable<Bool> {
         return nameSubject.asObserver()
-            .take(1)
             .map { $0.isEmpty }
+            .asObservable()
+    }
+
+    private var isDuplicateByCategoryObservable: Observable<Bool> {
+        return nameSubject.asObserver()
+            .map { self.isDuplicateByCategory(of: $0) }
             .asObservable()
     }
 
@@ -86,9 +90,19 @@ class CreateCategoryViewModel {
             .disposed(by: disposeBag)
 
         saveDidTapSubject
+            .withLatestFrom(isDuplicateByCategoryObservable)
+            .filter { $0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.errorsSubject.onNext(CreateCategoryError.duplicateName)
+            })
+            .disposed(by: disposeBag)
+
+        saveDidTapSubject
             .withLatestFrom(isEmojiFieldEmptyObservable)
             .filter { !$0 }
             .withLatestFrom(isNameFieldEmptyObservable)
+            .filter { !$0 }
+            .withLatestFrom(isDuplicateByCategoryObservable)
             .filter { !$0 }
             .withLatestFrom(categoryObservable)
             .subscribe(onNext: { [weak self] category in
@@ -100,6 +114,10 @@ class CreateCategoryViewModel {
 }
 
 private extension CreateCategoryViewModel {
+
+    func isDuplicateByCategory(of query: String) -> Bool {
+        return !RealmManager.shared.findByCategory(query: query).isEmpty
+    }
 
     func saveCategory(newCategory: Category) {
         RealmManager.add(newCategory)
