@@ -112,22 +112,16 @@ private extension CreateCategoryViewController {
     }
 
     func bindInput() {
-        emojiField.rx.text
-            .orEmpty
-            .distinctUntilChanged()
+        emojiField.rx.text.orEmpty
             .takeLast(1)
             .bind(to: viewModel.emojiField)
             .disposed(by: disposeBag)
 
-        nameField.rx.text
-            .orEmpty
-            .distinctUntilChanged()
-            .takeLast(1)
+        nameField.rx.text.orEmpty
             .bind(to: viewModel.nameField)
             .disposed(by: disposeBag)
 
         self.navigationItem.rightBarButtonItem!.rx.tap
-            .takeLast(1)
             .bind(to: viewModel.saveButtonTapped)
             .disposed(by: disposeBag)
     }
