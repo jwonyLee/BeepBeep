@@ -25,6 +25,7 @@ class CreateCategoryViewController: UIViewController {
         $0.layer.cornerRadius = 15
         $0.tintColor = .clear
         $0.textAlignment = .center
+        $0.becomeFirstResponder()
     }
 
     private let nameLabel = UILabel().then {
@@ -59,12 +60,6 @@ class CreateCategoryViewController: UIViewController {
         setEmojiFieldConstraints()
         setNameLabelConstraints()
         setNameFieldConstraints()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        emojiField.becomeFirstResponder()
     }
 }
 
