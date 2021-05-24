@@ -112,12 +112,16 @@ private extension CreateCategoryViewController {
     }
 
     func bindInput() {
-        emojiField.rx.text.orEmpty
+        emojiField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
             .takeLast(1)
             .bind(to: viewModel.emojiField)
             .disposed(by: disposeBag)
 
-        nameField.rx.text.orEmpty
+        nameField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
             .takeLast(1)
             .bind(to: viewModel.nameField)
             .disposed(by: disposeBag)
