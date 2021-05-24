@@ -18,27 +18,13 @@ enum CreateCategoryError: Error {
 
 class CreateCategoryViewModel {
 
-    struct Input {
-        let emoji: AnyObserver<String>
-        let name: AnyObserver<String>
-        let saveDidTap: AnyObserver<Void>
-    }
-
-    struct Output {
-        let errorsObservable: Observable<CreateCategoryError>
-        let didPopObservable: Observable<Void>
-    }
-
-    let input: Input
-    let output: Output
-
     private var disposeBag = DisposeBag()
 
-    private let emojiSubject = PublishSubject<String>()
-    private let nameSubject = PublishSubject<String>()
-    private let saveDidTapSubject = PublishSubject<Void>()
-    private let errorsSubject = PublishSubject<CreateCategoryError>()
-    private let didPopSubject = PublishSubject<Void>()
+    let emojiSubject = PublishSubject<String>()
+    let nameSubject = PublishSubject<String>()
+    let saveDidTapSubject = PublishSubject<Void>()
+    let errorsSubject = PublishSubject<CreateCategoryError>()
+    let didPopSubject = PublishSubject<Void>()
 
     private var isEmojiFieldEmptyObservable: Observable<Bool> {
         return emojiSubject.asObserver()
@@ -65,14 +51,6 @@ class CreateCategoryViewModel {
     }
 
     init() {
-
-        input = Input(emoji: emojiSubject.asObserver(),
-                      name: nameSubject.asObserver(),
-                      saveDidTap: saveDidTapSubject.asObserver())
-
-        output = Output(errorsObservable: errorsSubject.asObservable(),
-                        didPopObservable: didPopSubject.asObservable())
-
         saveDidTapSubject
             .withLatestFrom(isEmojiFieldEmptyObservable)
             .filter { $0 }

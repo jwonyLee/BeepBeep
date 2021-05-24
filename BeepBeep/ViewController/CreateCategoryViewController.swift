@@ -118,23 +118,20 @@ private extension CreateCategoryViewController {
 
     func bindInput() {
         emojiField.rx.text.orEmpty
-            .asObservable()
-            .subscribe(viewModel.input.emoji)
+            .bind(to: viewModel.emojiSubject)
             .disposed(by: disposeBag)
 
         nameField.rx.text.orEmpty
-            .asObservable()
-            .subscribe(viewModel.input.name)
+            .bind(to: viewModel.nameSubject)
             .disposed(by: disposeBag)
 
         self.navigationItem.rightBarButtonItem!.rx.tap
-            .asObservable()
-            .subscribe(viewModel.input.saveDidTap)
+            .bind(to: viewModel.saveDidTapSubject)
             .disposed(by: disposeBag)
     }
 
     func bindOutput() {
-        viewModel.output.errorsObservable
+        viewModel.errorsSubject
             .subscribe(onNext: { error in
                 switch error {
                 case .isEmojiFieldEmpty:
@@ -150,8 +147,7 @@ private extension CreateCategoryViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.output.didPopObservable
-            .observe(on: MainScheduler.instance)
+        viewModel.didPopSubject
             .subscribe(onNext: { [unowned self] in
                 self.navigationController?.popViewController(animated: true)
             })
