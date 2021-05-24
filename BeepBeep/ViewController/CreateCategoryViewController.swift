@@ -8,8 +8,14 @@
 import UIKit
 import SnapKit
 import Then
+import ISEmojiView
+import RxSwift
+import RxCocoa
 
 class CreateCategoryViewController: UIViewController {
+
+    private let viewModel = CreateCategoryViewModel()
+    private var disposeBag = DisposeBag()
 
     private let emojiField = UITextField().then {
         $0.adjustsFontForContentSizeCategory = true
@@ -48,9 +54,17 @@ class CreateCategoryViewController: UIViewController {
         configureNavigation()
         configureViews()
         configureEmojiField()
+        bindInput()
+        bindOutput()
         setEmojiFieldConstraints()
         setNameLabelConstraints()
         setNameFieldConstraints()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        emojiField.becomeFirstResponder()
     }
 }
 
@@ -69,7 +83,11 @@ private extension CreateCategoryViewController {
     }
 
     func configureEmojiField() {
-        emojiField.delegate = self
+        let keyboardSettings = KeyboardSettings(bottomType: .categories)
+        let emojiView = EmojiView(keyboardSettings: keyboardSettings)
+        emojiView.translatesAutoresizingMaskIntoConstraints = false
+        emojiView.delegate = self
+        emojiField.inputView = emojiView
     }
 
     func setEmojiFieldConstraints() {
@@ -97,16 +115,70 @@ private extension CreateCategoryViewController {
             $0.height.equalTo(64)
         }
     }
+
+    func bindInput() {
+        emojiField.rx.text.orEmpty
+            .asObservable()
+            .subscribe(viewModel.input.emoji)
+            .disposed(by: disposeBag)
+
+        nameField.rx.text.orEmpty
+            .asObservable()
+            .subscribe(viewModel.input.name)
+            .disposed(by: disposeBag)
+
+        self.navigationItem.rightBarButtonItem!.rx.tap
+            .asObservable()
+            .subscribe(viewModel.input.saveDidTap)
+            .disposed(by: disposeBag)
+    }
+
+    func bindOutput() {
+        viewModel.output.errorsObservable
+            .subscribe(onNext: { error in
+                switch error {
+                case .isEmojiFieldEmpty:
+                    print("emoji is empty")
+                    break
+                case .isNameFiledEmpty:
+                    print("name is empty")
+                    break
+                case .duplicateName:
+                    print("duplicate name")
+                    break
+                }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.output.didPopObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] in
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
-extension CreateCategoryViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let textFieldText = textField.text,
-              let rangeOfTextToReplace = Range(range, in: textFieldText) else {
-            return false
-        }
-        let substringToReplace = textFieldText[rangeOfTextToReplace]
-        let count = textFieldText.count - substringToReplace.count + string.count
-        return count <= 1
+extension CreateCategoryViewController: EmojiViewDelegate {
+    // callback when tap a emoji on keyboard
+    func emojiViewDidSelectEmoji(_ emoji: String, emojiView: EmojiView) {
+        emojiField.text = emoji
+    }
+
+    // callback when tap change keyboard button on keyboard
+    func emojiViewDidPressChangeKeyboardButton(_ emojiView: EmojiView) {
+        emojiField.inputView = nil
+        emojiField.keyboardType = .default
+        emojiField.reloadInputViews()
+    }
+
+    // callback when tap delete button on keyboard
+    func emojiViewDidPressDeleteBackwardButton(_ emojiView: EmojiView) {
+        emojiField.deleteBackward()
+    }
+
+    // callback when tap dismiss button on keyboard
+    func emojiViewDidPressDismissKeyboardButton(_ emojiView: EmojiView) {
+        emojiField.resignFirstResponder()
     }
 }

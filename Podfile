@@ -12,6 +12,7 @@ target 'BeepBeep' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'Then'
   pod 'RealmSwift'
+  pod 'ISEmojiView'
 
   target 'BeepBeepTests' do
     inherit! :search_paths

@@ -23,4 +23,15 @@ class Category: Object {
         self.name = name
         self.emoji = emoji
     }
+
+    // Primary key for Realm Entity. Required
+    override static func primaryKey() -> String? {
+        return "identifier"
+    }
+
+    // properties that are either computed and lazy are mentioned here
+    // since Realm cannnot store those.
+    override static func ignoredProperties() -> [String] {
+        ["Category"]
+    }
 }
