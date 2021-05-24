@@ -18,96 +18,83 @@ enum CreateCategoryError: Error {
 
 class CreateCategoryViewModel {
 
-    struct Input {
-        let emoji: AnyObserver<String>
-        let name: AnyObserver<String>
-        let saveDidTap: AnyObserver<Void>
-    }
-
-    struct Output {
-        let errorsObservable: Observable<CreateCategoryError>
-        let didPopObservable: Observable<Void>
-    }
-
-    let input: Input
-    let output: Output
-
     private var disposeBag = DisposeBag()
 
-    private let emojiSubject = PublishSubject<String>()
-    private let nameSubject = PublishSubject<String>()
-    private let saveDidTapSubject = PublishSubject<Void>()
-    private let errorsSubject = PublishSubject<CreateCategoryError>()
-    private let didPopSubject = PublishSubject<Void>()
+    let emojiField = PublishRelay<String>()
+    let nameField = PublishRelay<String>()
+    let saveButtonTapped = PublishRelay<Void>()
+    let errorsRelay = PublishRelay<CreateCategoryError>()
+    let didPopRelay = PublishRelay<Void>()
 
-    private var isEmojiFieldEmptyObservable: Observable<Bool> {
-        return emojiSubject.asObserver()
-            .map { $0.isEmpty }
-            .asObservable()
+    /**
+     emojiField가 비어있는지 여부
+     - true: 값이 있음
+     - false: 값이 없음(필드가 비어있음)
+     */
+    private var isEmojiValid: Observable<Bool> {
+        return emojiField.map { !$0.isEmpty }
     }
 
-    private var isNameFieldEmptyObservable: Observable<Bool> {
-        return nameSubject.asObserver()
-            .map { $0.isEmpty }
-            .asObservable()
+    /**
+     nameField가 비어있는지 여부
+     - true: 값이 있음
+     - false: 값이 없음(필드가 비어있음)
+     */
+    private var isNameValid: Observable<Bool> {
+        return nameField.map { !$0.isEmpty }
     }
 
-    private var isDuplicateByCategoryObservable: Observable<Bool> {
-        return nameSubject.asObserver()
-            .map { self.isDuplicateByCategory(of: $0) }
-            .asObservable()
+    /**
+     중복된 카테고리 이름이 있는지 여부
+     - true: 중복된 값이 없음
+     - false: 중복된 값이 있음
+     */
+    private var isDuplicateByCategoryValid: Observable<Bool> {
+        return nameField.map { !self.isDuplicateByCategory(of: $0) }
     }
 
     private var categoryObservable: Observable<Category> {
-        return Observable.combineLatest(emojiSubject.asObserver(), nameSubject.asObserver()) { (emoji, name) in
+        return Observable.combineLatest(emojiField, nameField) { (emoji, name) in
             return Category(name: name, emoji: emoji)
         }
     }
 
     init() {
-
-        input = Input(emoji: emojiSubject.asObserver(),
-                      name: nameSubject.asObserver(),
-                      saveDidTap: saveDidTapSubject.asObserver())
-
-        output = Output(errorsObservable: errorsSubject.asObservable(),
-                        didPopObservable: didPopSubject.asObservable())
-
-        saveDidTapSubject
-            .withLatestFrom(isEmojiFieldEmptyObservable)
-            .filter { $0 }
+        saveButtonTapped
+            .withLatestFrom(self.isEmojiValid)
+            .filter { !$0 }
             .subscribe(onNext: { [weak self] _ in
-                self?.errorsSubject.onNext(CreateCategoryError.isEmojiFieldEmpty)
+                self?.errorsRelay.accept(CreateCategoryError.isEmojiFieldEmpty)
             })
             .disposed(by: disposeBag)
 
-        saveDidTapSubject
-            .withLatestFrom(isNameFieldEmptyObservable)
-            .filter { $0 }
+        saveButtonTapped
+            .withLatestFrom(self.isNameValid)
+            .filter { !$0 }
             .subscribe(onNext: { [weak self] _ in
-                self?.errorsSubject.onNext(CreateCategoryError.isNameFiledEmpty)
+                self?.errorsRelay.accept(CreateCategoryError.isNameFiledEmpty)
             })
             .disposed(by: disposeBag)
 
-        saveDidTapSubject
-            .withLatestFrom(isDuplicateByCategoryObservable)
-            .filter { $0 }
+        saveButtonTapped
+            .withLatestFrom(self.isDuplicateByCategoryValid)
+            .filter { !$0 }
             .subscribe(onNext: { [weak self] _ in
-                self?.errorsSubject.onNext(CreateCategoryError.duplicateName)
+                self?.errorsRelay.accept(CreateCategoryError.duplicateName)
             })
             .disposed(by: disposeBag)
 
-        saveDidTapSubject
-            .withLatestFrom(isEmojiFieldEmptyObservable)
-            .filter { !$0 }
-            .withLatestFrom(isNameFieldEmptyObservable)
-            .filter { !$0 }
-            .withLatestFrom(isDuplicateByCategoryObservable)
-            .filter { !$0 }
+        saveButtonTapped
+            .withLatestFrom(self.isEmojiValid)
+            .filter { $0 }
+            .withLatestFrom(self.isNameValid)
+            .filter { $0 }
+            .withLatestFrom(self.isDuplicateByCategoryValid)
+            .filter { $0 }
             .withLatestFrom(categoryObservable)
             .subscribe(onNext: { [weak self] category in
                 self?.saveCategory(newCategory: category)
-                self?.didPopSubject.onNext(())
+                self?.didPopRelay.accept(())
             })
             .disposed(by: disposeBag)
     }

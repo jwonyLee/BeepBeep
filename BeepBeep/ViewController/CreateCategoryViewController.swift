@@ -25,6 +25,7 @@ class CreateCategoryViewController: UIViewController {
         $0.layer.cornerRadius = 15
         $0.tintColor = .clear
         $0.textAlignment = .center
+        $0.becomeFirstResponder()
     }
 
     private let nameLabel = UILabel().then {
@@ -59,12 +60,6 @@ class CreateCategoryViewController: UIViewController {
         setEmojiFieldConstraints()
         setNameLabelConstraints()
         setNameFieldConstraints()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        emojiField.becomeFirstResponder()
     }
 }
 
@@ -117,24 +112,28 @@ private extension CreateCategoryViewController {
     }
 
     func bindInput() {
-        emojiField.rx.text.orEmpty
-            .asObservable()
-            .subscribe(viewModel.input.emoji)
+        emojiField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .takeLast(1)
+            .bind(to: viewModel.emojiField)
             .disposed(by: disposeBag)
 
-        nameField.rx.text.orEmpty
-            .asObservable()
-            .subscribe(viewModel.input.name)
+        nameField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .takeLast(1)
+            .bind(to: viewModel.nameField)
             .disposed(by: disposeBag)
 
         self.navigationItem.rightBarButtonItem!.rx.tap
-            .asObservable()
-            .subscribe(viewModel.input.saveDidTap)
+            .takeLast(1)
+            .bind(to: viewModel.saveButtonTapped)
             .disposed(by: disposeBag)
     }
 
     func bindOutput() {
-        viewModel.output.errorsObservable
+        viewModel.errorsRelay
             .subscribe(onNext: { error in
                 switch error {
                 case .isEmojiFieldEmpty:
@@ -150,8 +149,7 @@ private extension CreateCategoryViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.output.didPopObservable
-            .observe(on: MainScheduler.instance)
+        viewModel.didPopRelay
             .subscribe(onNext: { [unowned self] in
                 self.navigationController?.popViewController(animated: true)
             })
