@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     // MARK: - View Properties
     private let progressView = RoundView().then {
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Private
-private extension ViewController {
+private extension MainViewController {
     func configureNavigation() {
         self.title = "BeepBeep"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -124,7 +124,7 @@ private extension ViewController {
 }
 
 // MARK: - CollectionView Datasource
-extension ViewController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -140,7 +140,7 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 // MARK: - CollectionView FlowLayout Delegate
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 72)
     }
