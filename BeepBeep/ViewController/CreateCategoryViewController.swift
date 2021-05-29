@@ -113,7 +113,6 @@ private extension CreateCategoryViewController {
 
     func bindInput() {
         emojiField.rx.text.orEmpty
-            .takeLast(1)
             .bind(to: viewModel.emojiField)
             .disposed(by: disposeBag)
 
@@ -155,6 +154,7 @@ extension CreateCategoryViewController: EmojiViewDelegate {
     // callback when tap a emoji on keyboard
     func emojiViewDidSelectEmoji(_ emoji: String, emojiView: EmojiView) {
         emojiField.text = emoji
+        viewModel.emojiField.accept(emoji)
     }
 
     // callback when tap change keyboard button on keyboard
