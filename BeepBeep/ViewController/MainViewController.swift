@@ -137,6 +137,10 @@ extension MainViewController: UICollectionViewDataSource {
 
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(ListOfItemsViewController(), animated: true)
+    }
 }
 
 // MARK: - CollectionView FlowLayout Delegate
