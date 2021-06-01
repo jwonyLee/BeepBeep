@@ -8,13 +8,34 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 class ListOfItemsViewController: UIViewController {
 
-    // MARK: - View Properties
+    // MARK: - Properties
+    private let disposeBag = DisposeBag()
 
+    // MARK: - View Properties
     private let tableView = UITableView().then {
         $0.separatorStyle = .none
+    }
+
+    private let practiceButton = UIButton().then {
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
+        $0.titleLabel?.numberOfLines = 1
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.backgroundColor = .label
+        $0.setImage(UIImage(systemName: "mic"), for: .normal)
+        $0.tintColor = .systemBackground
+        $0.setTitle("연습하기", for: .normal)
+        $0.setTitleColor(.systemBackground, for: .normal)
+        $0.semanticContentAttribute = .forceLeftToRight
+        $0.contentVerticalAlignment = .center
+        $0.contentHorizontalAlignment = .center
+        $0.clipsToBounds = true
+        $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 24)
     }
 
     override func viewDidLoad() {
@@ -26,6 +47,13 @@ class ListOfItemsViewController: UIViewController {
         configureViews()
         setTableView()
         setTableViewConstraints()
+        setPracticeButtonConstraints()
+        bindInput()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        practiceButton.layer.cornerRadius = practiceButton.frame.size.height / 2
     }
 }
 
@@ -39,6 +67,7 @@ private extension ListOfItemsViewController {
 
     func configureViews() {
         view.addSubview(tableView)
+        view.addSubview(practiceButton)
     }
 
     func setTableView() {
@@ -55,6 +84,23 @@ private extension ListOfItemsViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+    }
+
+    func setPracticeButtonConstraints() {
+        practiceButton.snp.makeConstraints {
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
+        }
+    }
+
+    func bindInput() {
+        practiceButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind {
+                print("Tapped")
+            }
+            .disposed(by: disposeBag)
     }
 }
 
