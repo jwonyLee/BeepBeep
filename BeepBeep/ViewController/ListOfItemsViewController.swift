@@ -49,6 +49,7 @@ class ListOfItemsViewController: UIViewController {
         setTableViewConstraints()
         setPracticeButtonConstraints()
         bindInput()
+        bindTableView()
     }
 
     override func viewWillLayoutSubviews() {
@@ -99,6 +100,15 @@ private extension ListOfItemsViewController {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind {
                 print("Tapped")
+            }
+            .disposed(by: disposeBag)
+    }
+
+    func bindTableView() {
+        tableView.rx.itemSelected
+            .bind { [weak self] indexPath in
+                guard let self = self else { return }
+                self.tableView.deselectRow(at: indexPath, animated: true)
             }
             .disposed(by: disposeBag)
     }
