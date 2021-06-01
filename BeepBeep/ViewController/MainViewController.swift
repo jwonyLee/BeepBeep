@@ -128,6 +128,7 @@ private extension MainViewController {
 
     func bindCollectionView() {
         collectionView.rx.itemSelected
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
                 let listOfItemsViewController = ListOfItemsViewController()
