@@ -13,6 +13,9 @@ import RxCocoa
 
 class MainViewController: UIViewController {
 
+    // MARK: - Properties
+    private let disposeBag = DisposeBag()
+
     // MARK: - View Properties
     private let progressView = RoundView().then {
         $0.backgroundColor = UIColor(named: "BeepGray")
@@ -54,6 +57,7 @@ class MainViewController: UIViewController {
         setCategoryHeaderLabelConstraints()
         setCollectionViewConstraints()
         setNewCategoryButtonConstraints()
+        bindCollectionView()
     }
 
     override func viewWillLayoutSubviews() {
@@ -121,6 +125,17 @@ private extension MainViewController {
     @objc func createCategory() {
         self.navigationController?.pushViewController(CreateCategoryViewController(), animated: true)
     }
+
+    func bindCollectionView() {
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                let listOfItemsViewController = ListOfItemsViewController()
+                listOfItemsViewController.title = "\(indexPath.row)번째"
+                self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: - CollectionView Datasource
@@ -136,10 +151,6 @@ extension MainViewController: UICollectionViewDataSource {
         }
 
         return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(ListOfItemsViewController(), animated: true)
     }
 }
 
