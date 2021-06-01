@@ -83,7 +83,7 @@ private extension ListOfItemsViewController {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(practiceButton.snp.top).offset(-16)
         }
     }
 
