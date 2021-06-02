@@ -154,7 +154,7 @@ extension CreateCategoryViewController: EmojiViewDelegate {
     // callback when tap a emoji on keyboard
     func emojiViewDidSelectEmoji(_ emoji: String, emojiView: EmojiView) {
         emojiField.text = emoji
-        viewModel.emojiField.accept(emoji)
+        emojiField.sendActions(for: .valueChanged)
     }
 
     // callback when tap change keyboard button on keyboard
