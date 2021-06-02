@@ -11,10 +11,11 @@
 		84BE59AF918F93AD7210BC28 /* Pods_BeepBeep_BeepBeepUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D362CC3DD84D29946DF53D /* Pods_BeepBeep_BeepBeepUITests.framework */; };
 		8707BF6D26523C89004B082E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF6C26523C89004B082E /* RealmManager.swift */; };
 		8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */; };
+		873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873827E926622048008684D8 /* ListOfItemsViewController.swift */; };
 		87531C8826457016009644EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87531C8726457016009644EE /* .swiftlint.yml */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
 		8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFD26441F8600F8578C /* SceneDelegate.swift */; };
-		8793FE0026441F8600F8578C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFF26441F8600F8578C /* ViewController.swift */; };
+		8793FE0026441F8600F8578C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFF26441F8600F8578C /* MainViewController.swift */; };
 		8793FE0826441F8800F8578C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8793FE0726441F8800F8578C /* Assets.xcassets */; };
 		8793FE0B26441F8800F8578C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8793FE0926441F8800F8578C /* LaunchScreen.storyboard */; };
 		8793FE1626441F8800F8578C /* BeepBeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FE1526441F8800F8578C /* BeepBeepTests.swift */; };
@@ -52,11 +53,12 @@
 		73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeepBeepTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8707BF6C26523C89004B082E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewModel.swift; sourceTree = "<group>"; };
+		873827E926622048008684D8 /* ListOfItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfItemsViewController.swift; sourceTree = "<group>"; };
 		87531C8726457016009644EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FDFB26441F8600F8578C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8793FDFD26441F8600F8578C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8793FDFF26441F8600F8578C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8793FDFF26441F8600F8578C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8793FE0726441F8800F8578C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8793FE0A26441F8800F8578C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8793FE0C26441F8800F8578C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,8 +151,9 @@
 		87531C8A26457384009644EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8793FDFF26441F8600F8578C /* ViewController.swift */,
+				8793FDFF26441F8600F8578C /* MainViewController.swift */,
 				87DCC2CB264EA24F008FE490 /* CreateCategoryViewController.swift */,
+				873827E926622048008684D8 /* ListOfItemsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -498,13 +501,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
-				8793FE0026441F8600F8578C /* ViewController.swift in Sources */,
+				8793FE0026441F8600F8578C /* MainViewController.swift in Sources */,
 				8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */,
 				8707BF6D26523C89004B082E /* RealmManager.swift in Sources */,
 				87DCC2B5264D6C06008FE490 /* Record.swift in Sources */,
 				8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */,
 				8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */,
 				87DCC2B1264D69D4008FE490 /* Category.swift in Sources */,
+				873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */,
 				87DCC2CC264EA24F008FE490 /* CreateCategoryViewController.swift in Sources */,
 				87C3C2C52646E27C007E7B8E /* RoundView.swift in Sources */,
 				87E87B262649414D007412F9 /* CollectionsCell.swift in Sources */,

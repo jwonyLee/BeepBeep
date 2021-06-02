@@ -11,7 +11,10 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
+
+    // MARK: - Properties
+    private let disposeBag = DisposeBag()
 
     // MARK: - View Properties
     private let progressView = RoundView().then {
@@ -54,6 +57,7 @@ class ViewController: UIViewController {
         setCategoryHeaderLabelConstraints()
         setCollectionViewConstraints()
         setNewCategoryButtonConstraints()
+        bindCollectionView()
     }
 
     override func viewWillLayoutSubviews() {
@@ -63,7 +67,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Private
-private extension ViewController {
+private extension MainViewController {
     func configureNavigation() {
         self.title = "BeepBeep"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -121,10 +125,22 @@ private extension ViewController {
     @objc func createCategory() {
         self.navigationController?.pushViewController(CreateCategoryViewController(), animated: true)
     }
+
+    func bindCollectionView() {
+        collectionView.rx.itemSelected
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind { [weak self] indexPath in
+                guard let self = self else { return }
+                let listOfItemsViewController = ListOfItemsViewController()
+                listOfItemsViewController.title = "\(indexPath.row)번째"
+                self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: - CollectionView Datasource
-extension ViewController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -140,7 +156,7 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 // MARK: - CollectionView FlowLayout Delegate
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 72)
     }
