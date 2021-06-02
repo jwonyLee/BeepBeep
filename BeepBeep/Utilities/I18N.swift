@@ -7,24 +7,9 @@
 
 import Foundation
 
-enum I18N {
-    case title
-    case collection
-    case newCollection
-    case practice
-}
-
-extension I18N: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .title:
-            return "title".localized
-        case .collection:
-            return "collection".localized
-        case .newCollection:
-            return "newCollection".localized
-        case .practice:
-            return "practice".localized
-        }
-    }
+struct I18N {
+    static let title = "title".localized
+    static let collection = "collection".localized
+    static let newCollection = "newCollection".localized
+    static let practice = "practice".localized
 }
