@@ -22,6 +22,7 @@
 		8793FE2126441F8800F8578C /* BeepBeepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FE2026441F8800F8578C /* BeepBeepUITests.swift */; };
 		87A2A7DD2667534A00AB1647 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87A2A7DF2667534A00AB1647 /* Localizable.strings */; };
 		87A2A7E32667541300AB1647 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2A7E22667541300AB1647 /* String+.swift */; };
+		87A2A7E62667589400AB1647 /* I18N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2A7E52667589400AB1647 /* I18N.swift */; };
 		87C3C2C52646E27C007E7B8E /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C3C2C42646E27C007E7B8E /* RoundView.swift */; };
 		87DCC2B1264D69D4008FE490 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B0264D69D4008FE490 /* Category.swift */; };
 		87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B2264D6BFF008FE490 /* Item.swift */; };
@@ -74,6 +75,7 @@
 		87A2A7E02667537400AB1647 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		87A2A7E12667537400AB1647 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		87A2A7E22667541300AB1647 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		87A2A7E52667589400AB1647 /* I18N.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I18N.swift; sourceTree = "<group>"; };
 		87C3C2C42646E27C007E7B8E /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		87DCC2B0264D69D4008FE490 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		87DCC2B2264D6BFF008FE490 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				87A2A7E22667541300AB1647 /* String+.swift */,
+				87A2A7E52667589400AB1647 /* I18N.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 		8793FDFA26441F8600F8578C /* BeepBeep */ = {
 			isa = PBXGroup;
 			children = (
+				8793FE0C26441F8800F8578C /* Info.plist */,
 				87A2A7E42667579600AB1647 /* Support Files */,
 				8707BF732653E00C004B082E /* Service */,
 				87DCC2AD264D696A008FE490 /* Model */,
@@ -243,7 +247,6 @@
 				8793FDFD26441F8600F8578C /* SceneDelegate.swift */,
 				8793FE0726441F8800F8578C /* Assets.xcassets */,
 				8793FE0926441F8800F8578C /* LaunchScreen.storyboard */,
-				8793FE0C26441F8800F8578C /* Info.plist */,
 				87A2A7DF2667534A00AB1647 /* Localizable.strings */,
 			);
 			path = "Support Files";
@@ -519,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
+				87A2A7E62667589400AB1647 /* I18N.swift in Sources */,
 				8793FE0026441F8600F8578C /* MainViewController.swift in Sources */,
 				8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */,
 				8707BF6D26523C89004B082E /* RealmManager.swift in Sources */,
