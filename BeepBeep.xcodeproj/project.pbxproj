@@ -207,12 +207,7 @@
 		8793FDFA26441F8600F8578C /* BeepBeep */ = {
 			isa = PBXGroup;
 			children = (
-				8793FDFB26441F8600F8578C /* AppDelegate.swift */,
-				8793FDFD26441F8600F8578C /* SceneDelegate.swift */,
-				8793FE0726441F8800F8578C /* Assets.xcassets */,
-				8793FE0926441F8800F8578C /* LaunchScreen.storyboard */,
-				8793FE0C26441F8800F8578C /* Info.plist */,
-				87A2A7DF2667534A00AB1647 /* Localizable.strings */,
+				87A2A7E42667579600AB1647 /* Support Files */,
 				8707BF732653E00C004B082E /* Service */,
 				87DCC2AD264D696A008FE490 /* Model */,
 				8707BF6926523A2F004B082E /* ViewModel */,
@@ -239,6 +234,19 @@
 				8793FE2226441F8800F8578C /* Info.plist */,
 			);
 			path = BeepBeepUITests;
+			sourceTree = "<group>";
+		};
+		87A2A7E42667579600AB1647 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8793FDFB26441F8600F8578C /* AppDelegate.swift */,
+				8793FDFD26441F8600F8578C /* SceneDelegate.swift */,
+				8793FE0726441F8800F8578C /* Assets.xcassets */,
+				8793FE0926441F8800F8578C /* LaunchScreen.storyboard */,
+				8793FE0C26441F8800F8578C /* Info.plist */,
+				87A2A7DF2667534A00AB1647 /* Localizable.strings */,
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 		87DCC2AD264D696A008FE490 /* Model */ = {
