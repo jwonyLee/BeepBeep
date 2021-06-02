@@ -32,14 +32,14 @@ class CreateCategoryViewController: UIViewController {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .title1)
         $0.textAlignment = .left
-        $0.text = "모음집 이름은 무엇인가요?"
+        $0.text = I18N.newCollectionNameFieldDescription
         $0.textColor = .label
     }
 
     private let nameField = UITextField().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .title2)
-        $0.placeholder = "모음집 이름을 적어주세요."
+        $0.placeholder = I18N.newCollectionNameFieldPlaceholder
         $0.backgroundColor = UIColor(named: "BeepGray")
         $0.layer.masksToBounds = false
         $0.layer.cornerRadius = 15
@@ -65,7 +65,7 @@ class CreateCategoryViewController: UIViewController {
 
 private extension CreateCategoryViewController {
     func configureNavigation() {
-        self.title = "🗂 새 모음집 만들기"
+        self.title = "🗂 \(I18N.newCollectionTitle)"
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: nil)

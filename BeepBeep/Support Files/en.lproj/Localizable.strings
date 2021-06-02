@@ -10,3 +10,6 @@
 "collection" = "Collection";
 "newCollection" = "New Collection";
 "practice" = "Let's Practice";
+"newCollectionTitle" = "Create New Collection";
+"newCollectionNameFieldDescription" = "What is the Collection name?";
+"newCollectionNameFieldPlaceholder" = "Write the name of Collection here.";

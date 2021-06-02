@@ -12,4 +12,7 @@ struct I18N {
     static let collection = "collection".localized
     static let newCollection = "newCollection".localized
     static let practice = "practice".localized
+    static let newCollectionTitle = "newCollectionTitle".localized
+    static let newCollectionNameFieldDescription = "newCollectionNameFieldDescription".localized
+    static let newCollectionNameFieldPlaceholder = "newCollectionNameFieldPlaceholder".localized
 }
