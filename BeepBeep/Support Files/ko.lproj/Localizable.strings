@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  BeepBeep
+
+  Created by 이지원 on 2021/06/02.
+  
+*/
+
+"title" = "삡삡";
+"collection" = "모음집";
+"newCollection" = "새 모음집";
+"practice" = "연습하기";
+"newCollectionTitle" = "새 모음집 만들기";
+"newCollectionNameFieldDescription" = "모음집 이름은 무엇인가요?";
+"newCollectionNameFieldPlaceholder" = "여기에 모음집 이름을 적어주세요.";

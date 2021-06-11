@@ -28,7 +28,7 @@ class ListOfItemsViewController: UIViewController {
         $0.backgroundColor = .label
         $0.setImage(UIImage(systemName: "mic"), for: .normal)
         $0.tintColor = .systemBackground
-        $0.setTitle("연습하기", for: .normal)
+        $0.setTitle(I18N.practice, for: .normal)
         $0.setTitleColor(.systemBackground, for: .normal)
         $0.semanticContentAttribute = .forceLeftToRight
         $0.contentVerticalAlignment = .center

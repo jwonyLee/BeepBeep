@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  BeepBeep
+
+  Created by 이지원 on 2021/06/02.
+  
+*/
+
+"title" = "BeepBeep";
+"collection" = "Collection";
+"newCollection" = "New Collection";
+"practice" = "Let's Practice";
+"newCollectionTitle" = "Create New Collection";
+"newCollectionNameFieldDescription" = "What is the Collection name?";
+"newCollectionNameFieldPlaceholder" = "Write the name of Collection here.";

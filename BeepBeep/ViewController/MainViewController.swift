@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
     }
 
     private let categoryHeaderLabel = UILabel().then {
-        $0.text = "모음집"
+        $0.text = I18N.collection
         $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
     }
 
@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
         $0.backgroundColor = .label
         $0.setImage(UIImage(systemName: "folder.badge.plus"), for: .normal)
         $0.tintColor = .systemBackground
-        $0.setTitle("새 모음집", for: .normal)
+        $0.setTitle(I18N.newCollection, for: .normal)
         $0.setTitleColor(.systemBackground, for: .normal)
         $0.semanticContentAttribute = .forceLeftToRight
         $0.contentVerticalAlignment = .center
@@ -69,7 +69,7 @@ class MainViewController: UIViewController {
 // MARK: - Private
 private extension MainViewController {
     func configureNavigation() {
-        self.title = "BeepBeep"
+        self.title = I18N.title
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
@@ -132,7 +132,7 @@ private extension MainViewController {
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
                 let listOfItemsViewController = ListOfItemsViewController()
-                listOfItemsViewController.title = "\(indexPath.row)번째"
+                listOfItemsViewController.title = "\(indexPath.row)"
                 self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
             }
             .disposed(by: disposeBag)
