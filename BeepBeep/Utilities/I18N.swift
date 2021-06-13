@@ -15,4 +15,8 @@ struct I18N {
     static let newCollectionTitle = "newCollectionTitle".localized
     static let newCollectionNameFieldDescription = "newCollectionNameFieldDescription".localized
     static let newCollectionNameFieldPlaceholder = "newCollectionNameFieldPlaceholder".localized
+    static let modify = "modify".localized
+    static let delete = "delete".localized
+    static let cancle = "cancle".localized
+    static let actionsheetMessage = "selectOption".localized
 }
