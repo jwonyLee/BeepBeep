@@ -38,7 +38,7 @@ class ItemDetailViewController: UIViewController {
         $0.textColor = .label
     }
 
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let tableView = UITableView(frame: .zero, style: .grouped)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +47,11 @@ class ItemDetailViewController: UIViewController {
 
         configureNavigation()
         configureViews()
-        setCollectionView()
+        setTableView()
         setTitleLabelConstraints()
         setAnswerTextViewConstraints()
         setRecordTitleLabelConstraints()
-        setCollectionViewConstraints()
+        setTableViewConstraints()
     }
 }
 
@@ -107,13 +107,14 @@ private extension ItemDetailViewController {
         view.addSubview(titleLabel)
         view.addSubview(answerTextView)
         view.addSubview(recordTitleLabel)
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
     }
 
-    func setCollectionView() {
-        collectionView.backgroundColor = .none
-        collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.identifier)
+    func setTableView() {
+        tableView.backgroundColor = .none
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
+
     func setTitleLabelConstraints() {
         titleLabel.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
@@ -139,8 +140,8 @@ private extension ItemDetailViewController {
         }
     }
 
-    func setCollectionViewConstraints() {
-        collectionView.snp.makeConstraints {
+    func setTableViewConstraints() {
+        tableView.snp.makeConstraints {
             $0.leading.equalTo(titleLabel.snp.leading)
             $0.top.equalTo(recordTitleLabel.snp.bottom).offset(32)
             $0.trailing.equalTo(titleLabel.snp.trailing)
