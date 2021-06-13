@@ -24,6 +24,7 @@
 		87A2A7E32667541300AB1647 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2A7E22667541300AB1647 /* String+.swift */; };
 		87A2A7E62667589400AB1647 /* I18N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2A7E52667589400AB1647 /* I18N.swift */; };
 		87AA3D472674CD770046FDB8 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AA3D462674CD770046FDB8 /* ItemDetailViewController.swift */; };
+		87AA3D4926763FE80046FDB8 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AA3D4826763FE80046FDB8 /* RecordViewController.swift */; };
 		87C3C2C52646E27C007E7B8E /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C3C2C42646E27C007E7B8E /* RoundView.swift */; };
 		87DCC2B1264D69D4008FE490 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B0264D69D4008FE490 /* Category.swift */; };
 		87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B2264D6BFF008FE490 /* Item.swift */; };
@@ -78,6 +79,7 @@
 		87A2A7E22667541300AB1647 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		87A2A7E52667589400AB1647 /* I18N.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I18N.swift; sourceTree = "<group>"; };
 		87AA3D462674CD770046FDB8 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		87AA3D4826763FE80046FDB8 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		87C3C2C42646E27C007E7B8E /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		87DCC2B0264D69D4008FE490 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		87DCC2B2264D6BFF008FE490 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				87DCC2CB264EA24F008FE490 /* CreateCategoryViewController.swift */,
 				873827E926622048008684D8 /* ListOfItemsViewController.swift */,
 				87AA3D462674CD770046FDB8 /* ItemDetailViewController.swift */,
+				87AA3D4826763FE80046FDB8 /* RecordViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
 				87A2A7E62667589400AB1647 /* I18N.swift in Sources */,
 				8793FE0026441F8600F8578C /* MainViewController.swift in Sources */,
+				87AA3D4926763FE80046FDB8 /* RecordViewController.swift in Sources */,
 				8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */,
 				8707BF6D26523C89004B082E /* RealmManager.swift in Sources */,
 				87AA3D472674CD770046FDB8 /* ItemDetailViewController.swift in Sources */,
