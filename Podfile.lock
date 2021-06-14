@@ -1,4 +1,5 @@
 PODS:
+  - FloatingPanel (2.4.0)
   - ISEmojiView (0.2.6)
   - Realm (10.7.5):
     - Realm/Headers (= 10.7.5)
@@ -16,6 +17,7 @@ PODS:
   - Then (2.7.0)
 
 DEPENDENCIES:
+  - FloatingPanel
   - ISEmojiView
   - RealmSwift
   - RxCocoa (= 6.1.0)
@@ -26,6 +28,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FloatingPanel
     - ISEmojiView
     - Realm
     - RealmSwift
@@ -37,6 +40,7 @@ SPEC REPOS:
     - Then
 
 SPEC CHECKSUMS:
+  FloatingPanel: fa60183672ed86313b9e241e34465e82211260e8
   ISEmojiView: f7cd94a6c93307f429ec5da001293d0b02247f03
   Realm: 06f5c67f87cb8c5f27b122218ce22e9a77314517
   RealmSwift: b46535b52e69b9ed33912f0fcb3182ab0a5743ee
@@ -47,6 +51,6 @@ SPEC CHECKSUMS:
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: d5f5046eceb27eaac9eab68251a08f1ac1636f34
+PODFILE CHECKSUM: d66ee7b68481fcc3a8081268ae18164ed83f1d98
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
