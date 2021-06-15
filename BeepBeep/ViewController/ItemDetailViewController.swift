@@ -123,6 +123,7 @@ private extension ItemDetailViewController {
         floatingPanelController.view.frame = self.view.bounds
         floatingPanelController.delegate = self
         floatingPanelController.layout = RecordFloatingPanelLayout()
+        floatingPanelController.contentMode = .fitToBounds
 
         let appearance = SurfaceAppearance()
         appearance.cornerRadius = 20.0
