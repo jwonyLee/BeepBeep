@@ -13,10 +13,11 @@ import RxCocoa
 import FloatingPanel
 
 class RecordViewController: UIViewController {
-
+    
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-
+    private let viewModel = RecordViewModel()
+    
     // MARK: - View Properties
     let recordView = UIView().then {
         $0.layer.cornerRadius = 33
@@ -24,12 +25,12 @@ class RecordViewController: UIViewController {
         $0.layer.borderColor = UIColor.secondaryLabel.cgColor
         $0.layer.masksToBounds = true
     }
-
+    
     let recordButton = RecordButton()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         configureViews()
         setRecordViewConstraints()
@@ -43,7 +44,7 @@ private extension RecordViewController {
         recordView.addSubview(recordButton)
         view.addSubview(recordView)
     }
-
+    
     func setRecordViewConstraints() {
         recordView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -52,21 +53,36 @@ private extension RecordViewController {
             $0.height.equalTo(recordView.snp.width)
         }
     }
-
+    
     func setRecordButtonConstraints() {
         recordButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
-
+    
     func bindInput() {
         recordButton.rx.tap
-            .delay(.milliseconds(5), scheduler: MainScheduler.instance)
-            .bind { self.moveToHalf() }
+            .bind { self.viewModel.recording() }
             .disposed(by: disposeBag)
     }
-
+    
+    func bindOutput() {
+        viewModel.isRecordingRelay
+            .subscribe(onNext: { isRecording in
+                if isRecording {
+                    self.moveToHalf()
+                } else {
+                    self.moveToTip()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func moveToHalf() {
         (self.parent as! FloatingPanelController).move(to: .half, animated: true)
+    }
+    
+    func moveToTip() {
+        (self.parent as! FloatingPanelController).move(to: .tip, animated: true)
     }
 }

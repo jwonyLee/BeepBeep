@@ -12,6 +12,7 @@
 		8707BF6D26523C89004B082E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF6C26523C89004B082E /* RealmManager.swift */; };
 		8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */; };
 		8718832C2678A6E500830492 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8718832B2678A6E500830492 /* RecordButton.swift */; };
+		871DDDFD2680984900851FDD /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871DDDFC2680984900851FDD /* RecordViewModel.swift */; };
 		873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873827E926622048008684D8 /* ListOfItemsViewController.swift */; };
 		87531C8826457016009644EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87531C8726457016009644EE /* .swiftlint.yml */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
@@ -60,6 +61,7 @@
 		8707BF6C26523C89004B082E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewModel.swift; sourceTree = "<group>"; };
 		8718832B2678A6E500830492 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		871DDDFC2680984900851FDD /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		873827E926622048008684D8 /* ListOfItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfItemsViewController.swift; sourceTree = "<group>"; };
 		87531C8726457016009644EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */,
+				871DDDFC2680984900851FDD /* RecordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */,
 				8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */,
 				87DCC2B1264D69D4008FE490 /* Category.swift in Sources */,
+				871DDDFD2680984900851FDD /* RecordViewModel.swift in Sources */,
 				8718832C2678A6E500830492 /* RecordButton.swift in Sources */,
 				873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */,
 				87DCC2CC264EA24F008FE490 /* CreateCategoryViewController.swift in Sources */,
