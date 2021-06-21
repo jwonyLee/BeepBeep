@@ -12,23 +12,22 @@ import RxSwift
 import RxCocoa
 
 class ListOfItemsViewController: UIViewController {
-
     // MARK: - Properties
-    private let disposeBag = DisposeBag()
+    private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: - View Properties
-    private let tableView = UITableView().then {
+    private let tableView: UITableView = UITableView().then {
         $0.separatorStyle = .none
     }
 
-    private let practiceButton = UIButton().then {
+    private let practiceButton: UIButton = UIButton().then {
         $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.titleLabel?.numberOfLines = 1
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         $0.backgroundColor = .label
         $0.setImage(UIImage(systemName: "mic"), for: .normal)
         $0.tintColor = .systemBackground
-        $0.setTitle(I18N.practice, for: .normal)
+        $0.setTitle(I18N.practice.localized, for: .normal)
         $0.setTitleColor(.systemBackground, for: .normal)
         $0.semanticContentAttribute = .forceLeftToRight
         $0.contentVerticalAlignment = .center
@@ -59,26 +58,26 @@ class ListOfItemsViewController: UIViewController {
 }
 
 // MARK: - Private
-private extension ListOfItemsViewController {
-    func configureNavigation() {
+extension ListOfItemsViewController {
+    private func configureNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = true
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
     }
 
-    func configureViews() {
+    private func configureViews() {
         view.addSubview(tableView)
         view.addSubview(practiceButton)
     }
 
-    func setTableView() {
+    private func setTableView() {
         tableView.backgroundColor = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 
-    func setTableViewConstraints() {
+    private func setTableViewConstraints() {
         tableView.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
@@ -87,7 +86,7 @@ private extension ListOfItemsViewController {
         }
     }
 
-    func setPracticeButtonConstraints() {
+    private func setPracticeButtonConstraints() {
         practiceButton.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
@@ -95,7 +94,7 @@ private extension ListOfItemsViewController {
         }
     }
 
-    func bindInput() {
+    private func bindInput() {
         practiceButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind {
@@ -104,12 +103,12 @@ private extension ListOfItemsViewController {
             .disposed(by: disposeBag)
     }
 
-    func bindTableView() {
+    private func bindTableView() {
         tableView.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
                 self.tableView.deselectRow(at: indexPath, animated: true)
-                let itemDetailViewController = ItemDetailViewController()
+                let itemDetailViewController: ItemDetailViewController = ItemDetailViewController()
                 itemDetailViewController.title = "\(indexPath.row)"
                 self.navigationController?.pushViewController(itemDetailViewController, animated: true)
             }
@@ -120,11 +119,11 @@ private extension ListOfItemsViewController {
 // MARK: - TableView Datasource
 extension ListOfItemsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         cell.textLabel?.text = "text"
         cell.accessoryType = .disclosureIndicator
@@ -134,5 +133,4 @@ extension ListOfItemsViewController: UITableViewDataSource {
 }
 
 extension ListOfItemsViewController: UITableViewDelegate {
-
 }

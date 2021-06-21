@@ -13,11 +13,10 @@ import RxSwift
 import RxCocoa
 
 class CreateCategoryViewController: UIViewController {
+    private let viewModel: CreateCategoryViewModel = CreateCategoryViewModel()
+    private var disposeBag: DisposeBag = DisposeBag()
 
-    private let viewModel = CreateCategoryViewModel()
-    private var disposeBag = DisposeBag()
-
-    private let emojiField = UITextField().then {
+    private let emojiField: UITextField = UITextField().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont(name: "AppleColorEmoji", size: 72)
         $0.backgroundColor = UIColor(named: "BeepGray")
@@ -28,18 +27,18 @@ class CreateCategoryViewController: UIViewController {
         $0.becomeFirstResponder()
     }
 
-    private let nameLabel = UILabel().then {
+    private let nameLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .title1)
         $0.textAlignment = .left
-        $0.text = I18N.newCollectionNameFieldDescription
+        $0.text = I18N.newCollectionNameFieldDescription.localized
         $0.textColor = .label
     }
 
-    private let nameField = UITextField().then {
+    private let nameField: UITextField = UITextField().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .title2)
-        $0.placeholder = I18N.newCollectionNameFieldPlaceholder
+        $0.placeholder = I18N.newCollectionNameFieldPlaceholder.localized
         $0.backgroundColor = UIColor(named: "BeepGray")
         $0.layer.masksToBounds = false
         $0.layer.cornerRadius = 15
@@ -63,29 +62,29 @@ class CreateCategoryViewController: UIViewController {
     }
 }
 
-private extension CreateCategoryViewController {
-    func configureNavigation() {
+extension CreateCategoryViewController {
+    private func configureNavigation() {
         self.title = "🗂 \(I18N.newCollectionTitle)"
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: nil)
     }
 
-    func configureViews() {
+    private func configureViews() {
         view.addSubview(emojiField)
         view.addSubview(nameLabel)
         view.addSubview(nameField)
     }
 
-    func configureEmojiField() {
-        let keyboardSettings = KeyboardSettings(bottomType: .categories)
-        let emojiView = EmojiView(keyboardSettings: keyboardSettings)
+    private func configureEmojiField() {
+        let keyboardSettings: KeyboardSettings = KeyboardSettings(bottomType: .categories)
+        let emojiView: EmojiView = EmojiView(keyboardSettings: keyboardSettings)
         emojiView.translatesAutoresizingMaskIntoConstraints = false
         emojiView.delegate = self
         emojiField.inputView = emojiView
     }
 
-    func setEmojiFieldConstraints() {
+    private func setEmojiFieldConstraints() {
         emojiField.snp.makeConstraints {
             $0.centerX.equalTo(view.safeAreaLayoutGuide.snp.centerX)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(48)
@@ -94,7 +93,7 @@ private extension CreateCategoryViewController {
         }
     }
 
-    func setNameLabelConstraints() {
+    private func setNameLabelConstraints() {
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
             $0.top.equalTo(emojiField.snp.bottom).offset(48)
@@ -102,7 +101,7 @@ private extension CreateCategoryViewController {
         }
     }
 
-    func setNameFieldConstraints() {
+    private func setNameFieldConstraints() {
         nameField.snp.makeConstraints {
             $0.leading.equalTo(nameLabel.snp.leading)
             $0.top.equalTo(nameLabel.snp.bottom).offset(8)
@@ -111,7 +110,7 @@ private extension CreateCategoryViewController {
         }
     }
 
-    func bindInput() {
+    private func bindInput() {
         emojiField.rx.text.orEmpty
             .bind(to: viewModel.emojiField)
             .disposed(by: disposeBag)
@@ -125,19 +124,16 @@ private extension CreateCategoryViewController {
             .disposed(by: disposeBag)
     }
 
-    func bindOutput() {
+    private func bindOutput() {
         viewModel.errorsRelay
             .subscribe(onNext: { error in
                 switch error {
                 case .isEmojiFieldEmpty:
                     print("emoji is empty")
-                    break
                 case .isNameFiledEmpty:
                     print("name is empty")
-                    break
                 case .duplicateName:
                     print("duplicate name")
-                    break
                 }
             })
             .disposed(by: disposeBag)
