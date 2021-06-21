@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class Item: Object {
-
     @objc dynamic var identifier: ObjectId = ObjectId.generate()
     @objc dynamic var createDate: Date = Date()
     @objc dynamic var title: String = ""
@@ -17,8 +16,8 @@ class Item: Object {
     @objc dynamic var interval: TimeInterval = 0
     @objc dynamic var isFavorite: Bool = false
 
-    let category = LinkingObjects(fromType: Category.self, property: "items")
-    let records = List<Record>()
+    let category: LinkingObjects = LinkingObjects(fromType: Category.self, property: "items")
+    let records: List<Record> = List<Record>()
 
     convenience init(title: String, content: String, interval: TimeInterval) {
         self.init()

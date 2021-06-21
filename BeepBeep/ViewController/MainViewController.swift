@@ -12,30 +12,29 @@ import RxSwift
 import RxCocoa
 
 class MainViewController: UIViewController {
-
     // MARK: - Properties
-    private let disposeBag = DisposeBag()
+    private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: - View Properties
-    private let progressView = RoundView().then {
+    private let progressView: RoundView = RoundView().then {
         $0.backgroundColor = UIColor(named: "BeepGray")
     }
 
-    private let categoryHeaderLabel = UILabel().then {
-        $0.text = I18N.collection
+    private let categoryHeaderLabel: UILabel = UILabel().then {
+        $0.text = I18N.collection.localized
         $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
     }
 
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    private var newCategoryButton = UIButton().then {
+    private var newCategoryButton: UIButton = UIButton().then {
         $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.titleLabel?.numberOfLines = 1
         $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         $0.backgroundColor = .label
         $0.setImage(UIImage(systemName: "folder.badge.plus"), for: .normal)
         $0.tintColor = .systemBackground
-        $0.setTitle(I18N.newCollection, for: .normal)
+        $0.setTitle(I18N.newCollection.localized, for: .normal)
         $0.setTitleColor(.systemBackground, for: .normal)
         $0.semanticContentAttribute = .forceLeftToRight
         $0.contentVerticalAlignment = .center
@@ -67,13 +66,13 @@ class MainViewController: UIViewController {
 }
 
 // MARK: - Private
-private extension MainViewController {
-    func configureNavigation() {
-        self.title = I18N.title
+extension MainViewController {
+    private func configureNavigation() {
+        self.title = I18N.title.localized
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
-    func configureViews() {
+    private func configureViews() {
         view.addSubview(progressView)
         view.addSubview(categoryHeaderLabel)
         view.addSubview(collectionView)
@@ -82,14 +81,14 @@ private extension MainViewController {
         newCategoryButton.addTarget(self, action: #selector(createCategory), for: .touchUpInside)
     }
 
-    func setCollectionView() {
+    private func setCollectionView() {
         collectionView.backgroundColor = .none
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.identifier)
     }
 
-    func setProgressViewConstraints() {
+    private func setProgressViewConstraints() {
         progressView.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
@@ -98,7 +97,7 @@ private extension MainViewController {
         }
     }
 
-    func setCategoryHeaderLabelConstraints() {
+    private func setCategoryHeaderLabelConstraints() {
         categoryHeaderLabel.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.top.equalTo(progressView.snp.bottom).offset(32)
@@ -106,7 +105,7 @@ private extension MainViewController {
         }
     }
 
-    func setCollectionViewConstraints() {
+    private func setCollectionViewConstraints() {
         collectionView.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
             $0.top.equalTo(categoryHeaderLabel.snp.bottom).offset(16)
@@ -115,23 +114,24 @@ private extension MainViewController {
         }
     }
 
-    func setNewCategoryButtonConstraints() {
+    private func setNewCategoryButtonConstraints() {
         newCategoryButton.snp.makeConstraints {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
         }
     }
 
-    @objc func createCategory() {
+    @objc
+    private func createCategory() {
         self.navigationController?.pushViewController(CreateCategoryViewController(), animated: true)
     }
 
-    func bindCollectionView() {
+    private func bindCollectionView() {
         collectionView.rx.itemSelected
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
-                let listOfItemsViewController = ListOfItemsViewController()
+                let listOfItemsViewController: ListOfItemsViewController = ListOfItemsViewController()
                 listOfItemsViewController.title = "\(indexPath.row)"
                 self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
             }
@@ -141,9 +141,8 @@ private extension MainViewController {
 
 // MARK: - CollectionView Datasource
 extension MainViewController: UICollectionViewDataSource {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        10
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -158,18 +157,18 @@ extension MainViewController: UICollectionViewDataSource {
 // MARK: - CollectionView FlowLayout Delegate
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 72)
+        CGSize(width: collectionView.frame.width, height: 72)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        16
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        .zero
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
 }

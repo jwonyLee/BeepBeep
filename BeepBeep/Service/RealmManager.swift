@@ -18,8 +18,10 @@ private protocol RealmOperations {
     static func add<S: Sequence>(_ objects: S) where S.Iterator.Element: Object
 
     /// gets objects from Realm that satisfy the given predicate
-    static func get<R: Object>(fromEntity entity: R.Type, withPredicate predicate: NSPredicate?,
-                               sortedByKey sortKey: String?, inAscending isAscending: Bool) -> Results<R>
+    static func get<R: Object>(fromEntity entity: R.Type,
+                               withPredicate predicate: NSPredicate?,
+                               sortedByKey sortKey: String?,
+                               inAscending isAscending: Bool) -> Results<R>
 
     /// deletes a single object from Realm
     static func delete(_ object: Object)
@@ -35,18 +37,17 @@ private protocol RealmOperations {
 }
 
 class RealmManager {
-
-    static let shared = RealmManager()
+    static let shared: RealmManager = RealmManager()
     private init() { }
 
     // MARK: - functions
     static func realmConfig() -> Realm.Configuration {
-        return Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+        Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     }
 
     private static func realmInstance() -> Realm {
         do {
-            let newRealm = try Realm(configuration: realmConfig())
+            let newRealm: Realm = try Realm(configuration: realmConfig())
             return newRealm
         } catch {
             print(error)
@@ -60,7 +61,7 @@ extension RealmManager: RealmOperations {
     fileprivate static func write<T: Object>(_ object: T? = nil, block: @escaping ((Realm, T?) -> Void)) {
         DispatchQueue(label: "realm").sync {
             autoreleasepool {
-                let currentRealm = realmInstance()
+                let currentRealm: Realm = realmInstance()
 
                 if currentRealm.isInWriteTransaction {
                     return
@@ -80,21 +81,21 @@ extension RealmManager: RealmOperations {
     // MARK: - ADD functions
     /// adds an object to Realm
     static func add(_ object: Object) {
-        Self.write { (realmInstance, _) in
+        Self.write { realmInstance, _ in
             realmInstance.add(object, update: .all)
         }
     }
 
     /// adds a list of objects to Realm
     static func add<S: Sequence>(_ objects: S) where S.Iterator.Element: Object {
-        Self.write { (realmInstance, _) in
+        Self.write { realmInstance, _ in
             realmInstance.add(objects, update: .all)
         }
     }
 
     // MARK: - GET function
     static func get<R: Object>(fromEntity entity: R.Type, withPredicate predicate: NSPredicate? = nil, sortedByKey sortKey: String? = nil, inAscending isAscending: Bool = true) -> Results<R> {
-        var objects = realmInstance().objects(entity)
+        var objects: Results<R> = realmInstance().objects(entity)
         if predicate != nil {
             objects = objects.filter(predicate!)
         }
@@ -107,7 +108,7 @@ extension RealmManager: RealmOperations {
 
     // MARK: - DELETE functions
     static func delete(_ object: Object) {
-        Self.write(object) { (realmInstance, newObject) in
+        Self.write(object) { realmInstance, newObject in
             guard let newObject = newObject, !newObject.isInvalidated else {
                 return
             }
@@ -117,7 +118,7 @@ extension RealmManager: RealmOperations {
 
     /// deletes a list of elements from Realm
     static func delete<S: Sequence>(_ objects: S) where S.Iterator.Element: Object {
-        Self.write { (realmInstance, _) in
+        Self.write { realmInstance, _ in
             realmInstance.delete(objects)
         }
     }
@@ -133,7 +134,7 @@ extension RealmManager: RealmOperations {
             return
         }
 
-        Self.write(object) { (_, newObject) in
+        Self.write(object) { _, newObject in
             guard let newObject = newObject, !newObject.isInvalidated else {
                 return
             }
@@ -143,13 +144,12 @@ extension RealmManager: RealmOperations {
 }
 
 extension RealmManager {
-
     // MARK: - functions
     func findByCategory(query: String) -> [Category] {
-        let categories = RealmManager.get(fromEntity: Category.self,
-                                          withPredicate: NSPredicate(format: "name == %@", query),
-                                          sortedByKey: "name",
-                                          inAscending: true)
+        let categories: Results<Category> = RealmManager.get(fromEntity: Category.self,
+                                                             withPredicate: NSPredicate(format: "name == %@", query),
+                                                             sortedByKey: "name",
+                                                             inAscending: true)
         return Array(categories)
     }
 }

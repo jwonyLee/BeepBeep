@@ -10,19 +10,18 @@ import SnapKit
 import Then
 
 class CollectionsCell: UICollectionViewCell {
-
     // MARK: - Properties
     static let identifier: String = "CollectionsCell"
 
     // MARK: - View Properties
-    private var emojiLabel = UILabel().then {
+    private var emojiLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         $0.text = "🌩"
         $0.textColor = .label
     }
 
-    private var nameLabel = UILabel().then {
+    private var nameLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .headline)
         $0.text = "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum"
@@ -31,7 +30,7 @@ class CollectionsCell: UICollectionViewCell {
         $0.textColor = .label
     }
 
-    private var countLabel = UILabel().then {
+    private var countLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.preferredFont(forTextStyle: .subheadline)
         $0.text = "17"
@@ -55,14 +54,14 @@ class CollectionsCell: UICollectionViewCell {
 }
 
 // MARK: - Private
-private extension CollectionsCell {
-    func configureViews() {
+extension CollectionsCell {
+    private func configureViews() {
         contentView.addSubview(emojiLabel)
         contentView.addSubview(nameLabel)
         contentView.addSubview(countLabel)
     }
 
-    func setViewsConstraints() {
+    private func setViewsConstraints() {
         emojiLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         emojiLabel.snp.makeConstraints {
             $0.centerY.equalTo(contentView.snp.centerY)

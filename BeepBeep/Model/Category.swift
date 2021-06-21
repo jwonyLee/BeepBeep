@@ -9,14 +9,13 @@ import Foundation
 import RealmSwift
 
 class Category: Object {
-
     @objc dynamic var identifier: ObjectId = ObjectId.generate()
     @objc dynamic var createDate: Date = Date()
     @objc dynamic var name: String = ""
     @objc dynamic var emoji: String = ""
     @objc dynamic var isFavorite: Bool = false
 
-    let items = List<Item>()
+    let items: List<Item> = List<Item>()
 
     convenience init(name: String, emoji: String) {
         self.init()
@@ -26,7 +25,7 @@ class Category: Object {
 
     // Primary key for Realm Entity. Required
     override static func primaryKey() -> String? {
-        return "identifier"
+        "identifier"
     }
 
     // properties that are either computed and lazy are mentioned here
