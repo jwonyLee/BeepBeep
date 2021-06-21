@@ -169,10 +169,6 @@ private extension ItemDetailViewController {
             $0.bottom.equalToSuperview().offset(-32)
         }
     }
-
-    func test() {
-        floatingPanelController.move(to: .half, animated: true)
-    }
 }
 
 extension ItemDetailViewController: FloatingPanelControllerDelegate {
