@@ -13,3 +13,7 @@
 "newCollectionTitle" = "새 모음집 만들기";
 "newCollectionNameFieldDescription" = "모음집 이름은 무엇인가요?";
 "newCollectionNameFieldPlaceholder" = "여기에 모음집 이름을 적어주세요.";
+"modify" = "수정";
+"delete" = "삭제";
+"cancle" = "취소";
+"selectOption" = "옵션 선택";
