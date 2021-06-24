@@ -181,6 +181,7 @@ extension ItemDetailViewController: FloatingPanelControllerDelegate {
         switch fpc.state {
         case .tip:
             fpc.surfaceView.grabberHandle.isHidden = true
+            // TODO: 핸들바를 이용해 강제로 fpc를 .tip으로 줄였으면, 녹음 버튼을 종료 상태로 변경한다.
         default:
             fpc.surfaceView.grabberHandle.isHidden = false
         }
