@@ -11,6 +11,8 @@
 		84BE59AF918F93AD7210BC28 /* Pods_BeepBeep_BeepBeepUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D362CC3DD84D29946DF53D /* Pods_BeepBeep_BeepBeepUITests.framework */; };
 		8707BF6D26523C89004B082E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF6C26523C89004B082E /* RealmManager.swift */; };
 		8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */; };
+		8718832C2678A6E500830492 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8718832B2678A6E500830492 /* RecordButton.swift */; };
+		871DDDFD2680984900851FDD /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871DDDFC2680984900851FDD /* RecordViewModel.swift */; };
 		873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873827E926622048008684D8 /* ListOfItemsViewController.swift */; };
 		87531C8826457016009644EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87531C8726457016009644EE /* .swiftlint.yml */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
@@ -24,6 +26,7 @@
 		87A2A7E32667541300AB1647 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2A7E22667541300AB1647 /* String+.swift */; };
 		87A2A7E62667589400AB1647 /* I18N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2A7E52667589400AB1647 /* I18N.swift */; };
 		87AA3D472674CD770046FDB8 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AA3D462674CD770046FDB8 /* ItemDetailViewController.swift */; };
+		87AA3D4926763FE80046FDB8 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AA3D4826763FE80046FDB8 /* RecordViewController.swift */; };
 		87C3C2C52646E27C007E7B8E /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C3C2C42646E27C007E7B8E /* RoundView.swift */; };
 		87DCC2B1264D69D4008FE490 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B0264D69D4008FE490 /* Category.swift */; };
 		87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B2264D6BFF008FE490 /* Item.swift */; };
@@ -57,6 +60,8 @@
 		73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeepBeepTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8707BF6C26523C89004B082E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewModel.swift; sourceTree = "<group>"; };
+		8718832B2678A6E500830492 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		871DDDFC2680984900851FDD /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		873827E926622048008684D8 /* ListOfItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfItemsViewController.swift; sourceTree = "<group>"; };
 		87531C8726457016009644EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +83,7 @@
 		87A2A7E22667541300AB1647 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		87A2A7E52667589400AB1647 /* I18N.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I18N.swift; sourceTree = "<group>"; };
 		87AA3D462674CD770046FDB8 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		87AA3D4826763FE80046FDB8 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		87C3C2C42646E27C007E7B8E /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		87DCC2B0264D69D4008FE490 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		87DCC2B2264D6BFF008FE490 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */,
+				871DDDFC2680984900851FDD /* RecordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 				87DCC2CB264EA24F008FE490 /* CreateCategoryViewController.swift */,
 				873827E926622048008684D8 /* ListOfItemsViewController.swift */,
 				87AA3D462674CD770046FDB8 /* ItemDetailViewController.swift */,
+				87AA3D4826763FE80046FDB8 /* RecordViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -183,6 +191,7 @@
 			children = (
 				87C3C2C42646E27C007E7B8E /* RoundView.swift */,
 				87E87B252649414C007412F9 /* CollectionsCell.swift */,
+				8718832B2678A6E500830492 /* RecordButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -527,6 +536,7 @@
 				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
 				87A2A7E62667589400AB1647 /* I18N.swift in Sources */,
 				8793FE0026441F8600F8578C /* MainViewController.swift in Sources */,
+				87AA3D4926763FE80046FDB8 /* RecordViewController.swift in Sources */,
 				8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */,
 				8707BF6D26523C89004B082E /* RealmManager.swift in Sources */,
 				87AA3D472674CD770046FDB8 /* ItemDetailViewController.swift in Sources */,
@@ -534,6 +544,8 @@
 				8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */,
 				8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */,
 				87DCC2B1264D69D4008FE490 /* Category.swift in Sources */,
+				871DDDFD2680984900851FDD /* RecordViewModel.swift in Sources */,
+				8718832C2678A6E500830492 /* RecordButton.swift in Sources */,
 				873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */,
 				87DCC2CC264EA24F008FE490 /* CreateCategoryViewController.swift in Sources */,
 				87A2A7E32667541300AB1647 /* String+.swift in Sources */,

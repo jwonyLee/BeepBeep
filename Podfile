@@ -13,6 +13,7 @@ target 'BeepBeep' do
   pod 'Then'
   pod 'RealmSwift'
   pod 'ISEmojiView'
+  pod 'FloatingPanel'
 
   target 'BeepBeepTests' do
     inherit! :search_paths

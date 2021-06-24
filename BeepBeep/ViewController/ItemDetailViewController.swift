@@ -10,6 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import FloatingPanel
 
 class ItemDetailViewController: UIViewController {
     // MARK: - Properties
@@ -39,6 +40,8 @@ class ItemDetailViewController: UIViewController {
 
     private let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
 
+    private lazy var floatingPanelController = FloatingPanelController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,6 +50,7 @@ class ItemDetailViewController: UIViewController {
         configureNavigation()
         configureViews()
         setTableView()
+        setFloatingPanelController()
         setTitleLabelConstraints()
         setAnswerTextViewConstraints()
         setRecordTitleLabelConstraints()
@@ -113,6 +117,23 @@ extension ItemDetailViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 
+    private func setFloatingPanelController() {
+        floatingPanelController.view.frame = self.view.bounds
+        floatingPanelController.delegate = self
+        floatingPanelController.layout = RecordFloatingPanelLayout()
+        floatingPanelController.contentMode = .fitToBounds
+
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = 20.0
+
+        floatingPanelController.surfaceView.appearance = appearance
+
+        let recordViewController = RecordViewController()
+        floatingPanelController.set(contentViewController: recordViewController)
+
+        floatingPanelController.addPanel(toParent: self)
+    }
+
     private func setTitleLabelConstraints() {
         titleLabel.snp.makeConstraints {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
@@ -144,6 +165,44 @@ extension ItemDetailViewController {
             $0.top.equalTo(recordTitleLabel.snp.bottom).offset(32)
             $0.trailing.equalTo(titleLabel.snp.trailing)
             $0.bottom.equalToSuperview().offset(-32)
+        }
+    }
+}
+
+extension ItemDetailViewController: FloatingPanelControllerDelegate {
+
+    func floatingPanelShouldBeginDragging(_ fpc: FloatingPanelController) -> Bool {
+        return fpc.state == FloatingPanelState.tip ? false : true
+    }
+
+    func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
+        switch fpc.state {
+        case .tip:
+            fpc.surfaceView.grabberHandle.isHidden = true
+            // TODO: 핸들바를 이용해 강제로 fpc를 .tip으로 줄였으면, 녹음 버튼을 종료 상태로 변경한다.
+        default:
+            fpc.surfaceView.grabberHandle.isHidden = false
+        }
+    }
+}
+
+class RecordFloatingPanelLayout: FloatingPanelLayout {
+    let position: FloatingPanelPosition = .bottom
+    let initialState: FloatingPanelState = .tip
+    var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),
+            .half: FloatingPanelLayoutAnchor(fractionalInset: 0.375, edge: .bottom, referenceGuide: .safeArea),
+            .tip: FloatingPanelLayoutAnchor(fractionalInset: 0.125, edge: .bottom, referenceGuide: .safeArea)
+        ]
+    }
+
+    func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+        switch state {
+        case .full, .half:
+            return 0.3
+        default:
+            return 0.0
         }
     }
 }
