@@ -8,7 +8,6 @@
 import UIKit
 
 class RoundView: UIView {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 

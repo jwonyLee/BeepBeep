@@ -17,14 +17,13 @@ enum CreateCategoryError: Error {
 }
 
 class CreateCategoryViewModel {
+    private let disposeBag: DisposeBag = DisposeBag()
 
-    private var disposeBag = DisposeBag()
-
-    let emojiField = PublishRelay<String>()
-    let nameField = PublishRelay<String>()
-    let saveButtonTapped = PublishRelay<Void>()
-    let errorsRelay = PublishRelay<CreateCategoryError>()
-    let didPopRelay = PublishRelay<Void>()
+    let emojiField: PublishRelay<String> = PublishRelay<String>()
+    let nameField: PublishRelay<String> = PublishRelay<String>()
+    let saveButtonTapped: PublishRelay<Void> = PublishRelay<Void>()
+    let errorsRelay: PublishRelay<CreateCategoryError> = PublishRelay<CreateCategoryError>()
+    let didPopRelay: PublishRelay<Void> = PublishRelay<Void>()
 
     /**
      emojiField가 비어있는지 여부
@@ -32,7 +31,7 @@ class CreateCategoryViewModel {
      - false: 값이 없음(필드가 비어있음)
      */
     private var isEmojiValid: Observable<Bool> {
-        return emojiField.map { !$0.isEmpty }
+        emojiField.map { !$0.isEmpty }
     }
 
     /**
@@ -41,7 +40,7 @@ class CreateCategoryViewModel {
      - false: 값이 없음(필드가 비어있음)
      */
     private var isNameValid: Observable<Bool> {
-        return nameField.map { !$0.isEmpty }
+        nameField.map { !$0.isEmpty }
     }
 
     /**
@@ -50,16 +49,20 @@ class CreateCategoryViewModel {
      - false: 중복된 값이 있음
      */
     private var isDuplicateByCategoryValid: Observable<Bool> {
-        return nameField.map { !self.isDuplicateByCategory(of: $0) }
+        nameField.map { !self.isDuplicateByCategory(of: $0) }
     }
 
     private var categoryObservable: Observable<Category> {
-        return Observable.combineLatest(emojiField, nameField) { (emoji, name) in
+        Observable.combineLatest(emojiField, nameField) { emoji, name in
             return Category(name: name, emoji: emoji)
         }
     }
 
     init() {
+        bindInput()
+    }
+
+    private func bindInput() {
         saveButtonTapped
             .withLatestFrom(self.isEmojiValid)
             .filter { !$0 }
@@ -100,13 +103,12 @@ class CreateCategoryViewModel {
     }
 }
 
-private extension CreateCategoryViewModel {
-
-    func isDuplicateByCategory(of query: String) -> Bool {
-        return !RealmManager.shared.findByCategory(query: query).isEmpty
+extension CreateCategoryViewModel {
+    private func isDuplicateByCategory(of query: String) -> Bool {
+        !RealmManager.shared.findByCategory(query: query).isEmpty
     }
 
-    func saveCategory(newCategory: Category) {
+    private func saveCategory(newCategory: Category) {
         RealmManager.add(newCategory)
     }
 }

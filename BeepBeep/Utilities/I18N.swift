@@ -7,16 +7,20 @@
 
 import Foundation
 
-struct I18N {
-    static let title = "title".localized
-    static let collection = "collection".localized
-    static let newCollection = "newCollection".localized
-    static let practice = "practice".localized
-    static let newCollectionTitle = "newCollectionTitle".localized
-    static let newCollectionNameFieldDescription = "newCollectionNameFieldDescription".localized
-    static let newCollectionNameFieldPlaceholder = "newCollectionNameFieldPlaceholder".localized
-    static let modify = "modify".localized
-    static let delete = "delete".localized
-    static let cancle = "cancle".localized
-    static let actionsheetMessage = "selectOption".localized
+enum I18N: String {
+    case title = "title"
+    case collection = "collection"
+    case newCollection = "newCollection"
+    case practice = "practice"
+    case newCollectionTitle = "newCollectionTitle"
+    case newCollectionNameFieldDescription = "newCollectionNameFieldDescription"
+    case newCollectionNameFieldPlaceholder = "newCollectionNameFieldPlaceholder"
+    case modify = "modify"
+    case delete = "delete"
+    case cancle = "cancle"
+    case actionsheetMessage = "selectOption"
+
+    var localized: String {
+        self.rawValue.localized
+    }
 }
