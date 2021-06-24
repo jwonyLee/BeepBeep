@@ -80,10 +80,18 @@ private extension RecordViewController {
     }
 
     func moveToHalf() {
-        (self.parent as! FloatingPanelController).move(to: .half, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            UIView.animate(withDuration: TimeInterval(0.3)) {
+                (self.parent as! FloatingPanelController).move(to: .half, animated: false)
+            }
+        }
     }
 
     func moveToTip() {
-        (self.parent as! FloatingPanelController).move(to: .tip, animated: true)
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: TimeInterval(0.3)) {
+                (self.parent as! FloatingPanelController).move(to: .tip, animated: false)
+            }
+        }
     }
 }
