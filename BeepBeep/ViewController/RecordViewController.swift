@@ -36,6 +36,7 @@ class RecordViewController: UIViewController {
         setRecordViewConstraints()
         setRecordButtonConstraints()
         bindInput()
+        bindOutput()
     }
 }
 
