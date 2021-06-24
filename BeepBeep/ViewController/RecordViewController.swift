@@ -13,20 +13,19 @@ import RxCocoa
 import FloatingPanel
 
 class RecordViewController: UIViewController {
-
     // MARK: - Properties
-    private let disposeBag = DisposeBag()
-    private let viewModel = RecordViewModel()
+    private let disposeBag: DisposeBag = DisposeBag()
+    private let viewModel: RecordViewModel = RecordViewModel()
 
     // MARK: - View Properties
-    let recordView = UIView().then {
+    private let recordView: UIView = UIView().then {
         $0.layer.cornerRadius = 33
         $0.layer.borderWidth = 3
         $0.layer.borderColor = UIColor.secondaryLabel.cgColor
         $0.layer.masksToBounds = true
     }
 
-    let recordButton = RecordButton()
+    private let recordButton: RecordButton = RecordButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +39,13 @@ class RecordViewController: UIViewController {
     }
 }
 
-private extension RecordViewController {
-    func configureViews() {
+extension RecordViewController {
+    private func configureViews() {
         recordView.addSubview(recordButton)
         view.addSubview(recordView)
     }
 
-    func setRecordViewConstraints() {
+    private func setRecordViewConstraints() {
         recordView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-32)
@@ -55,19 +54,19 @@ private extension RecordViewController {
         }
     }
 
-    func setRecordButtonConstraints() {
+    private func setRecordButtonConstraints() {
         recordButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
 
-    func bindInput() {
+    private func bindInput() {
         recordButton.rx.tap
             .bind { self.viewModel.recording() }
             .disposed(by: disposeBag)
     }
 
-    func bindOutput() {
+    private func bindOutput() {
         viewModel.isRecordingRelay
             .subscribe(onNext: { isRecording in
                 if isRecording {
@@ -79,18 +78,18 @@ private extension RecordViewController {
             .disposed(by: disposeBag)
     }
 
-    func moveToHalf() {
+    private func moveToHalf() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             UIView.animate(withDuration: TimeInterval(0.3)) {
-                (self.parent as! FloatingPanelController).move(to: .half, animated: false)
+                (self.parent as? FloatingPanelController)?.move(to: .half, animated: false)
             }
         }
     }
 
-    func moveToTip() {
+    private func moveToTip() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: TimeInterval(0.3)) {
-                (self.parent as! FloatingPanelController).move(to: .tip, animated: false)
+                (self.parent as? FloatingPanelController)?.move(to: .tip, animated: false)
             }
         }
     }
