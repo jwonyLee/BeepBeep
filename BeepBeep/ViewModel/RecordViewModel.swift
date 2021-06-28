@@ -11,15 +11,15 @@ import RxSwift
 import RxCocoa
 
 class RecordViewModel {
-    private let disposeBag = DisposeBag()
-    private var isRecording = false {
+    private let disposeBag: DisposeBag = DisposeBag()
+    private var isRecording: Bool = false {
         didSet {
             isRecordingRelay.accept(isRecording)
         }
     }
-    let isRecordingRelay = PublishRelay<Bool>()
+    let isRecordingRelay: PublishRelay<Bool> = PublishRelay<Bool>()
 
     func recording() {
-        isRecording = !isRecording
+        isRecording.toggle()
     }
 }

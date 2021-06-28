@@ -12,16 +12,13 @@ import RxCocoa
 import Then
 
 class RecordButton: UIButton {
-
-    private let animationDuration = 0.4
+    private let animationDuration: TimeInterval = 0.4
     private var isRecording: Bool = false
     private var circleSize: Int = 50
     private var squareSize: Int {
-        get {
-            return Int(Double(circleSize) * 0.7)
-        }
+        Int(Double(circleSize) * 0.7)
     }
-    private let disposeBag = DisposeBag()
+    private let disposeBag: DisposeBag = DisposeBag()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,11 +48,10 @@ class RecordButton: UIButton {
             .bind { self.tapped() }
             .disposed(by: disposeBag)
     }
-
 }
 
-private extension RecordButton {
-    func configure() {
+extension RecordButton {
+    private func configure() {
         self.snp.makeConstraints {
             $0.width.equalTo(self.circleSize)
             $0.height.equalTo(self.circleSize)
@@ -66,7 +62,7 @@ private extension RecordButton {
         self.layer.cornerRadius = CGFloat(circleSize) / 2
     }
 
-    func tapped() {
+    private func tapped() {
         if isRecording {
             UIView.animate(withDuration: animationDuration) {
                 self.snp.updateConstraints {
@@ -88,6 +84,6 @@ private extension RecordButton {
             }
         }
 
-        isRecording = !isRecording
+        isRecording.toggle()
     }
 }
