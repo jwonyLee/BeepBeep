@@ -7,23 +7,14 @@
 
 import UIKit
 
-class UIViewController_: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+extension UIViewController {
+    func showAlert(title: String?, message: String?, actions: UIAlertAction...) {
+        let alertViewController: UIAlertController = UIAlertController(title: title,
+                                                                       message: message,
+                                                                       preferredStyle: .alert)
+        for action in actions {
+            alertViewController.addAction(action)
+        }
+        self.present(alertViewController, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
