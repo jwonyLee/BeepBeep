@@ -55,32 +55,6 @@ class RecordViewModel: NSObject {
         }
     }
 
-    /// 녹음 시작
-    private func record() {
-        if let recorder: AVAudioRecorder = self.audioRecorder {
-            let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
-            do {
-                try audioSession.setActive(true)
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-            recorder.record()
-        }
-    }
-
-    /// 녹음 정지
-    private func stop() {
-        if let recorder: AVAudioRecorder = self.audioRecorder {
-            recorder.stop()
-            let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
-            do {
-                try audioSession.setActive(false)
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-        }
-    }
-
     /// 마이크 접근 권한 요청
     func requestMicrophoneAccess(completion: @escaping (Bool) -> Void) {
         let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
@@ -117,6 +91,33 @@ extension RecordViewModel {
         audioRecorder?.prepareToRecord()
     }
 
+    /// 녹음 시작
+    private func record() {
+        if let recorder: AVAudioRecorder = self.audioRecorder {
+            let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setActive(true)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+            recorder.record()
+        }
+    }
+
+    /// 녹음 정지
+    private func stop() {
+        if let recorder: AVAudioRecorder = self.audioRecorder {
+            recorder.stop()
+            let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setActive(false)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+
+    /// save Record in Realm
     private func saveRecord(_ newRecord: Record) {
         RealmManager.add(newRecord)
     }
