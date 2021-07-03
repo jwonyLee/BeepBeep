@@ -39,21 +39,10 @@ class RecordViewModel {
         requestMicrophoneAccess { [weak self] allowed in
             if allowed { // 녹음 권한 허용
                 if let recorder: AVAudioRecorder = self?.audioRecorder {
-                    let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
-                    if recorder.isRecording { // 녹음 정지
-                        recorder.stop()
-                        do {
-                            try audioSession.setActive(false)
-                        } catch {
-                            fatalError(error.localizedDescription)
-                        }
+                    if recorder.isRecording { // 현재 녹음 중이므로, 녹음 정지
+                        self?.stop()
                     } else { // 녹음 시작
-                        do {
-                            try audioSession.setActive(true)
-                        } catch {
-                            fatalError(error.localizedDescription)
-                        }
-                        recorder.record()
+                        self?.record()
                     }
                 }
                 DispatchQueue.main.async {
@@ -66,7 +55,7 @@ class RecordViewModel {
     }
 
     /// 녹음 시작
-    func record() {
+    private func record() {
         if let recorder: AVAudioRecorder = self.audioRecorder {
             let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
             do {
@@ -79,7 +68,7 @@ class RecordViewModel {
     }
 
     /// 녹음 정지
-    func stop() {
+    private func stop() {
         if let recorder: AVAudioRecorder = self.audioRecorder {
             recorder.stop()
             let audioSession: AVAudioSession = AVAudioSession.sharedInstance()

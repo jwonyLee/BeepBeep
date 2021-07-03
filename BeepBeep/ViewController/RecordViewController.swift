@@ -72,7 +72,9 @@ extension RecordViewController {
 
     private func bindInput() {
         recordButton.rx.tap
-            .bind { self.viewModel.recording() }
+            .bind(with: self, onNext: { strongSelf, _ in
+                strongSelf.viewModel.recording()
+            })
             .disposed(by: disposeBag)
     }
 
