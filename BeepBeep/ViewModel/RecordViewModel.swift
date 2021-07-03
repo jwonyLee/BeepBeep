@@ -65,6 +65,19 @@ class RecordViewModel {
         }
     }
 
+    /// 녹음 시작
+    func record() {
+        if let recorder: AVAudioRecorder = self.audioRecorder {
+            let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setActive(true)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+            recorder.record()
+        }
+    }
+
     /// 녹음 정지
     func stop() {
         if let recorder: AVAudioRecorder = self.audioRecorder {
