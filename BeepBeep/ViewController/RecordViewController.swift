@@ -37,6 +37,16 @@ class RecordViewController: UIViewController {
         bindInput()
         bindOutput()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.requestMicrophoneAccess { [weak self] allowed in
+            if allowed {
+            } else {
+                self?.showSettingsAlert()
+            }
+        }
+    }
 }
 
 extension RecordViewController {
@@ -62,7 +72,9 @@ extension RecordViewController {
 
     private func bindInput() {
         recordButton.rx.tap
-            .bind { self.viewModel.recording() }
+            .bind(with: self, onNext: { strongSelf, _ in
+                strongSelf.viewModel.recording()
+            })
             .disposed(by: disposeBag)
     }
 
@@ -91,6 +103,23 @@ extension RecordViewController {
             UIView.animate(withDuration: TimeInterval(0.3)) {
                 (self.parent as? FloatingPanelController)?.move(to: .tip, animated: false)
             }
+        }
+    }
+
+    private func showSettingsAlert() {
+        let settingAction: UIAlertAction = UIAlertAction(title: "Settings", style: .default, handler: { _ in
+            DispatchQueue.main.async {
+                if let settingsURL: URL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsURL,
+                                              options: [:],
+                                              completionHandler: nil)
+                }
+            }
+        })
+        let cancleAction: UIAlertAction = UIAlertAction(title: "Cancle", style: .cancel)
+
+        DispatchQueue.main.async {
+            self.showAlert(title: "Michrophone Error!", message: "Not Authorized to Access the Microphone!", actions: settingAction, cancleAction)
         }
     }
 }
