@@ -145,6 +145,11 @@ extension RealmManager: RealmOperations {
 
 extension RealmManager {
     // MARK: - functions
+    func getCategory() -> [Category] {
+        let categories: Results<Category> = RealmManager.get(fromEntity: Category.self)
+        return Array(categories)
+    }
+
     func findByCategory(query: String) -> [Category] {
         let categories: Results<Category> = RealmManager.get(fromEntity: Category.self,
                                                              withPredicate: NSPredicate(format: "name == %@", query),
