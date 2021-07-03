@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class Record: Object {
-    @objc dynamic var idnetifier: ObjectId = ObjectId.generate()
+    @objc dynamic var identifier: ObjectId = ObjectId.generate()
     @objc dynamic var createDate: Date = Date()
     @objc dynamic var filePath: String = ""
     @objc dynamic var interval: TimeInterval = 0
@@ -21,5 +21,16 @@ class Record: Object {
         self.init()
         self.filePath = filePath
         self.interval = interval
+    }
+
+    // Primary key for Realm Entity. Required
+    override static func primaryKey() -> String? {
+        "identifier"
+    }
+
+    // properties that are either computed and lazy are mentioned here
+    // since Realm cannnot store those.
+    override static func ignoredProperties() -> [String] {
+        ["Record"]
     }
 }

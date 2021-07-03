@@ -11,7 +11,7 @@ import AVFoundation
 import RxSwift
 import RxCocoa
 
-class RecordViewModel {
+class RecordViewModel: NSObject {
     private let disposeBag: DisposeBag = DisposeBag()
     private var isRecording: Bool = false {
         didSet {
@@ -31,7 +31,8 @@ class RecordViewModel {
     }()
     let isRecordingRelay: PublishRelay<Bool> = PublishRelay<Bool>()
 
-    init() {
+    override init() {
+        super.init()
         configureAudioRecorder()
     }
 
@@ -111,7 +112,24 @@ extension RecordViewModel {
             AVSampleRateKey: 44_100.0
         ]
         audioRecorder = try? AVAudioRecorder(url: recordURL, settings: recorderSettings)
+        audioRecorder?.delegate = self
         audioRecorder?.isMeteringEnabled = true
         audioRecorder?.prepareToRecord()
+    }
+
+    private func saveRecord(_ newRecord: Record) {
+        RealmManager.add(newRecord)
+    }
+}
+
+// MARK: - Delegate
+extension RecordViewModel: AVAudioRecorderDelegate {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag { // 녹음이 끝났을 때
+            self.audioPlayer = try? AVAudioPlayer(contentsOf: self.recordURL)
+            let duration: TimeInterval = self.audioPlayer?.duration ?? 0.0
+            let record: Record = Record(filePath: self.recordURL.absoluteString, interval: duration)
+            self.saveRecord(record)
+        }
     }
 }

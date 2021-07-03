@@ -25,4 +25,15 @@ class Item: Object {
         self.content = content
         self.interval = interval
     }
+
+    // Primary key for Realm Entity. Required
+    override static func primaryKey() -> String? {
+        "identifier"
+    }
+
+    // properties that are either computed and lazy are mentioned here
+    // since Realm cannnot store those.
+    override static func ignoredProperties() -> [String] {
+        ["Item"]
+    }
 }
