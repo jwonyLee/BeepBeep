@@ -10,10 +10,12 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 class MainViewController: UIViewController {
     // MARK: - Properties
     private let disposeBag: DisposeBag = DisposeBag()
+    private var categories: BehaviorSubject<[Category]> = BehaviorSubject<[Category]>(value: [])
 
     // MARK: - View Properties
     private let progressView: RoundView = RoundView().then {
@@ -56,6 +58,7 @@ class MainViewController: UIViewController {
         setCategoryHeaderLabelConstraints()
         setCollectionViewConstraints()
         setNewCategoryButtonConstraints()
+        fetchCategory()
         bindCollectionView()
     }
 
@@ -83,7 +86,6 @@ extension MainViewController {
 
     private func setCollectionView() {
         collectionView.backgroundColor = .none
-        collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.identifier)
     }
@@ -127,6 +129,12 @@ extension MainViewController {
     }
 
     private func bindCollectionView() {
+        categories
+            .bind(to: collectionView.rx.items(cellIdentifier: CollectionsCell.identifier, cellType: CollectionsCell.self)) { _, element, cell in
+                cell.configure(element)
+            }
+            .disposed(by: disposeBag)
+
         collectionView.rx.itemSelected
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind { [weak self] indexPath in
@@ -137,20 +145,10 @@ extension MainViewController {
             }
             .disposed(by: disposeBag)
     }
-}
 
-// MARK: - CollectionView Datasource
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionsCell.identifier, for: indexPath) as? CollectionsCell else {
-            return CollectionsCell()
-        }
-
-        return cell
+    private func fetchCategory() {
+        let data: [Category] = RealmManager.shared.getCategory()
+        self.categories.onNext(data)
     }
 }
 
