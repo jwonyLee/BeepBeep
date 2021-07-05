@@ -17,6 +17,7 @@
 		87531C8826457016009644EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87531C8726457016009644EE /* .swiftlint.yml */; };
 		876CC4A82693114D007E47DC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876CC4A72693114D007E47DC /* MainViewModel.swift */; };
 		876CC4AA269311E5007E47DC /* ListOfItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876CC4A9269311E5007E47DC /* ListOfItemsViewModel.swift */; };
+		876CC4AC26931504007E47DC /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876CC4AB26931504007E47DC /* ItemDetailViewModel.swift */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
 		8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFD26441F8600F8578C /* SceneDelegate.swift */; };
 		8793FE0026441F8600F8578C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFF26441F8600F8578C /* MainViewController.swift */; };
@@ -69,6 +70,7 @@
 		87531C8726457016009644EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		876CC4A72693114D007E47DC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		876CC4A9269311E5007E47DC /* ListOfItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfItemsViewModel.swift; sourceTree = "<group>"; };
+		876CC4AB26931504007E47DC /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FDFB26441F8600F8578C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8793FDFD26441F8600F8578C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				871DDDFC2680984900851FDD /* RecordViewModel.swift */,
 				876CC4A72693114D007E47DC /* MainViewModel.swift */,
 				876CC4A9269311E5007E47DC /* ListOfItemsViewModel.swift */,
+				876CC4AB26931504007E47DC /* ItemDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				876CC4AC26931504007E47DC /* ItemDetailViewModel.swift in Sources */,
 				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
 				87A2A7E62667589400AB1647 /* I18N.swift in Sources */,
 				8793FE0026441F8600F8578C /* MainViewController.swift in Sources */,
