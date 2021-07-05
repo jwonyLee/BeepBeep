@@ -13,7 +13,9 @@ import RxCocoa
 
 class ListOfItemsViewController: UIViewController {
     // MARK: - Properties
+    private let identifier: String = "ListOfItemsCell"
     private let disposeBag: DisposeBag = DisposeBag()
+    let viewModel: ListOfItemsViewModel = ListOfItemsViewModel()
 
     // MARK: - View Properties
     private let tableView: UITableView = UITableView().then {
@@ -72,9 +74,7 @@ extension ListOfItemsViewController {
 
     private func setTableView() {
         tableView.backgroundColor = .none
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.identifier)
     }
 
     private func setTableViewConstraints() {
@@ -104,6 +104,12 @@ extension ListOfItemsViewController {
     }
 
     private func bindTableView() {
+        viewModel.itemsSubject
+            .bind(to: tableView.rx.items(cellIdentifier: self.identifier)) { row, element, cell in
+                cell.textLabel?.text = element.title
+            }
+            .disposed(by: disposeBag)
+
         tableView.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
@@ -114,23 +120,4 @@ extension ListOfItemsViewController {
             }
             .disposed(by: disposeBag)
     }
-}
-
-// MARK: - TableView Datasource
-extension ListOfItemsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        cell.textLabel?.text = "text"
-        cell.accessoryType = .disclosureIndicator
-
-        return cell
-    }
-}
-
-extension ListOfItemsViewController: UITableViewDelegate {
 }

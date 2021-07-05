@@ -12,7 +12,6 @@ import Then
 class CollectionsCell: UICollectionViewCell {
     // MARK: - Properties
     static let identifier: String = "CollectionsCell"
-    private var category: Category?
 
     // MARK: - View Properties
     private var emojiLabel: UILabel = UILabel().then {
@@ -54,7 +53,6 @@ class CollectionsCell: UICollectionViewCell {
     }
 
     func configure(_ category: Category) {
-        self.category = category
         self.emojiLabel.text = category.emoji
         self.nameLabel.text = category.name
         self.countLabel.text = "\(category.items.count)"

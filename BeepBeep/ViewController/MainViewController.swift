@@ -15,6 +15,7 @@ import RealmSwift
 class MainViewController: UIViewController {
     // MARK: - Properties
     private let disposeBag: DisposeBag = DisposeBag()
+    private let viewModel: MainViewModel = MainViewModel()
     private var categories: BehaviorSubject<[Category]> = BehaviorSubject<[Category]>(value: [])
 
     // MARK: - View Properties
@@ -140,7 +141,8 @@ extension MainViewController {
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
                 let listOfItemsViewController: ListOfItemsViewController = ListOfItemsViewController()
-                listOfItemsViewController.title = "\(indexPath.row)"
+                listOfItemsViewController.title = self.viewModel.categories[indexPath.row].emoji + self.viewModel.categories[indexPath.row].name
+                listOfItemsViewController.viewModel.items = Array(self.viewModel.categories[indexPath.row].items)
                 self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
             }
             .disposed(by: disposeBag)
@@ -149,6 +151,7 @@ extension MainViewController {
     private func fetchCategory() {
         let data: [Category] = RealmManager.shared.getCategory()
         self.categories.onNext(data)
+        self.viewModel.categories = data
     }
 }
 
