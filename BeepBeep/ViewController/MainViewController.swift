@@ -16,7 +16,6 @@ class MainViewController: UIViewController {
     // MARK: - Properties
     private let disposeBag: DisposeBag = DisposeBag()
     private let viewModel: MainViewModel = MainViewModel()
-    private var categories: BehaviorSubject<[Category]> = BehaviorSubject<[Category]>(value: [])
 
     // MARK: - View Properties
     private let progressView: RoundView = RoundView().then {
@@ -59,7 +58,6 @@ class MainViewController: UIViewController {
         setCategoryHeaderLabelConstraints()
         setCollectionViewConstraints()
         setNewCategoryButtonConstraints()
-        fetchCategory()
         bindCollectionView()
     }
 
@@ -130,7 +128,7 @@ extension MainViewController {
     }
 
     private func bindCollectionView() {
-        categories
+        viewModel.categorySubject
             .bind(to: collectionView.rx.items(cellIdentifier: CollectionsCell.identifier, cellType: CollectionsCell.self)) { _, element, cell in
                 cell.configure(element)
             }
@@ -141,18 +139,17 @@ extension MainViewController {
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
                 let listOfItemsViewController: ListOfItemsViewController = ListOfItemsViewController()
-                listOfItemsViewController.title = self.viewModel.categories[indexPath.row].emoji + self.viewModel.categories[indexPath.row].name
-                listOfItemsViewController.viewModel.items = Array(self.viewModel.categories[indexPath.row].items)
+                /*
+                 TODO:
+                 - listOfItemViewController.title bind viewModel.categorySubject[indexPath.row].emoji + viewModel.categorySubject[indexPath.row].name
+                 - listOfItemsViewController.viewModel.items pass viewModel.categorySubject[indexPath.row].items
+                 */
                 self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
             }
             .disposed(by: disposeBag)
     }
 
-    private func fetchCategory() {
-        let data: [Category] = RealmManager.shared.getCategory()
-        self.categories.onNext(data)
-        self.viewModel.categories = data
-    }
+    
 }
 
 // MARK: - CollectionView FlowLayout Delegate

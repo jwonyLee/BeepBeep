@@ -6,7 +6,19 @@
 //
 
 import Foundation
+import RxSwift
 
 class MainViewModel {
-    var categories: [Category] = []
+    private var categories: [Category] = []
+    lazy var categorySubject: BehaviorSubject<[Category]> = BehaviorSubject<[Category]>(value: self.categories)
+
+    init() {
+        fetchCategory()
+    }
+
+    private func fetchCategory() {
+        let data: [Category] = RealmManager.shared.getCategory()
+        self.categorySubject.onNext(data)
+        self.categories = data
+    }
 }
