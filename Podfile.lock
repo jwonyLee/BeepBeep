@@ -1,30 +1,36 @@
 PODS:
   - FloatingPanel (2.4.0)
   - ISEmojiView (0.2.6)
-  - Realm (10.7.5):
-    - Realm/Headers (= 10.7.5)
-  - Realm/Headers (10.7.5)
-  - RealmSwift (10.7.5):
-    - Realm (= 10.7.5)
+  - Realm (10.10.0):
+    - Realm/Headers (= 10.10.0)
+  - Realm/Headers (10.10.0)
+  - RealmSwift (10.10.0):
+    - Realm (= 10.10.0)
   - RxCocoa (6.1.0):
     - RxRelay (= 6.1.0)
     - RxSwift (= 6.1.0)
+  - RxRealm (5.0.1):
+    - Realm (~> 10.5)
+    - RealmSwift (~> 10.5)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.1.0):
     - RxSwift (= 6.1.0)
   - RxSwift (6.1.0)
   - SnapKit (5.0.1)
-  - SwiftLint (0.40.3)
+  - SwiftLint (0.43.1)
   - Then (2.7.0)
 
 DEPENDENCIES:
-  - FloatingPanel
-  - ISEmojiView
-  - RealmSwift
+  - FloatingPanel (= 2.4.0)
+  - ISEmojiView (= 0.2.6)
+  - RealmSwift (= 10.10.0)
   - RxCocoa (= 6.1.0)
+  - RxRealm (= 5.0.1)
   - RxSwift (= 6.1.0)
   - SnapKit (~> 5.0.0)
-  - SwiftLint
-  - Then
+  - SwiftLint (= 0.43.1)
+  - Then (= 2.7.0)
 
 SPEC REPOS:
   trunk:
@@ -33,6 +39,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - RxCocoa
+    - RxRealm
     - RxRelay
     - RxSwift
     - SnapKit
@@ -42,15 +49,16 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   FloatingPanel: fa60183672ed86313b9e241e34465e82211260e8
   ISEmojiView: f7cd94a6c93307f429ec5da001293d0b02247f03
-  Realm: 06f5c67f87cb8c5f27b122218ce22e9a77314517
-  RealmSwift: b46535b52e69b9ed33912f0fcb3182ab0a5743ee
+  Realm: f501df41a4222c67850c77cf135d472192ecf294
+  RealmSwift: c69aadfc7db0d60075178d037c2f34ada73d5201
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
+  RxRealm: bd7c601e78cfebe48c24d4550db83c31e1ab2c33
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: d66ee7b68481fcc3a8081268ae18164ed83f1d98
+PODFILE CHECKSUM: 3ab16c8e6bf925f1c08c2590498feb1d76137398
 
 COCOAPODS: 1.10.1
