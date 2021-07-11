@@ -115,7 +115,11 @@ extension ListOfItemsViewController {
                 guard let self = self else { return }
                 self.tableView.deselectRow(at: indexPath, animated: true)
                 let itemDetailViewController: ItemDetailViewController = ItemDetailViewController()
-                itemDetailViewController.title = "\(indexPath.row)"
+                self.viewModel.itemObservable
+                    .compactMap { $0[indexPath.row] }
+                    .map { $0.title }
+                    .bind(to: itemDetailViewController.rx.title)
+                    .disposed(by: self.disposeBag)
                 self.navigationController?.pushViewController(itemDetailViewController, animated: true)
             }
             .disposed(by: disposeBag)
