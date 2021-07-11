@@ -104,6 +104,12 @@ extension ListOfItemsViewController {
     }
 
     private func bindTableView() {
+        viewModel.itemObservable
+            .bind(to: tableView.rx.items(cellIdentifier: self.identifier)) { _, element, cell in
+                cell.textLabel?.text = element.title
+            }
+            .disposed(by: disposeBag)
+
         tableView.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let self = self else { return }

@@ -9,9 +9,14 @@ import Foundation
 import RxSwift
 
 class ListOfItemsViewModel {
-    private(set) var categoryObservable: Observable<Category>?
+    private let disposeBag: DisposeBag = DisposeBag()
+    private var category: Category = Category()
+    private(set) var itemObservable: Observable<[Item]> = Observable.just([])
 
     func setCategory(at category: Category) {
-        self.categoryObservable = RealmManager.shared.findByCategory(to: category.identifier)
+        self.category = category
+        if let findItem: Observable<[Item]> = RealmManager.shared.findByItem(at: category.identifier) {
+            itemObservable = findItem
+        }
     }
 }
