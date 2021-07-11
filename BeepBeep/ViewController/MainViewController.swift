@@ -146,11 +146,13 @@ extension MainViewController {
                         listOfItemsViewController.rx.title.onNext(title)
                     })
                     .disposed(by: self.disposeBag)
-                /*
-                 TODO:
-                 - listOfItemViewController.title bind viewModel.categorySubject[indexPath.row].emoji + viewModel.categorySubject[indexPath.row].name
-                 - listOfItemsViewController.viewModel.items pass viewModel.categorySubject[indexPath.row].items
-                 */
+
+                self.viewModel.categoryObservable
+                    .compactMap { $0[indexPath.row] }
+                    .subscribe { category in
+                        listOfItemsViewController.viewModel.setCategory(at: category)
+                    }.disposed(by: self.disposeBag)
+
                 self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
             }
             .disposed(by: disposeBag)

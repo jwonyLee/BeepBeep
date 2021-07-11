@@ -147,8 +147,17 @@ extension RealmManager: RealmOperations {
 
 extension RealmManager {
     // MARK: - functions
-    func getCategory() -> Observable<[Category]> {
+    func getCategories() -> Observable<[Category]> {
         Observable.array(from: RealmManager.get(fromEntity: Category.self))
+    }
+
+    func findByCategory(to identifier: ObjectId) -> Observable<Category>? {
+        if let find: Category = RealmManager.get(fromEntity: Category.self,
+                                                 withPredicate: NSPredicate(format: "identifier == %@", identifier),
+                                                 sortedByKey: nil).first {
+            return Observable.from(object: find)
+        }
+        return nil
     }
 
     func findByCategory(query: String) -> [Category] {

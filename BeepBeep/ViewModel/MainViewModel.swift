@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 class MainViewModel {
-    let categoryObservable: Observable<[Category]> = RealmManager.shared.getCategory()
+    let categoryObservable: Observable<[Category]> = RealmManager.shared.getCategories()
 }

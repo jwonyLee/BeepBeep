@@ -9,6 +9,9 @@ import Foundation
 import RxSwift
 
 class ListOfItemsViewModel {
-    var items: [Item] = []
-    lazy var itemsSubject: BehaviorSubject = BehaviorSubject(value: items)
+    private(set) var categoryObservable: Observable<Category>?
+
+    func setCategory(at category: Category) {
+        self.categoryObservable = RealmManager.shared.findByCategory(to: category.identifier)
+    }
 }
