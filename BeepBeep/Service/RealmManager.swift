@@ -148,7 +148,7 @@ extension RealmManager: RealmOperations {
 extension RealmManager {
     // MARK: - functions
     func getCategory() -> Observable<[Category]> {
-        return Observable.array(from: RealmManager.get(fromEntity: Category.self))
+        Observable.array(from: RealmManager.get(fromEntity: Category.self))
     }
 
     func findByCategory(query: String) -> [Category] {

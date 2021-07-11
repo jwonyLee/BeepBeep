@@ -139,6 +139,13 @@ extension MainViewController {
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
                 let listOfItemsViewController: ListOfItemsViewController = ListOfItemsViewController()
+                self.viewModel.categoryObservable
+                    .compactMap { $0[indexPath.row] }
+                    .map { $0.emoji + $0.name }
+                    .subscribe(onNext: { title in
+                        listOfItemsViewController.rx.title.onNext(title)
+                    })
+                    .disposed(by: self.disposeBag)
                 /*
                  TODO:
                  - listOfItemViewController.title bind viewModel.categorySubject[indexPath.row].emoji + viewModel.categorySubject[indexPath.row].name
