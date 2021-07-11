@@ -193,8 +193,8 @@ extension ItemDetailViewController {
     }
 
     private func bindTableView() {
-        viewModel.recordSubject
-            .bind(to: tableView.rx.items(cellIdentifier: self.identifier)) { row, element, cell in
+        viewModel.recordObservable
+            .bind(to: tableView.rx.items(cellIdentifier: self.identifier)) { _, element, cell in
                 cell.textLabel?.text = element.createDate.description
             }
             .disposed(by: disposeBag)

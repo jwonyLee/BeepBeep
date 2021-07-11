@@ -9,6 +9,20 @@ import Foundation
 import RxSwift
 
 class ItemDetailViewModel {
-    var records: [Record] = []
-    lazy var recordSubject: BehaviorSubject<[Record]> = BehaviorSubject(value: records)
+    private let disposeBag: DisposeBag = DisposeBag()
+    private var item: Item = Item()
+    private(set) var recordObservable: Observable<[Record]> = Observable.just([])
+
+    func setItem(at item: Item) {
+        self.item = item
+        fetchRecords(by: item)
+    }
+}
+
+extension ItemDetailViewModel {
+    private func fetchRecords(by item: Item) {
+        if let findRecord: Observable<[Record]> = RealmManager.shared.findByRecord(at: item.identifier) {
+            recordObservable = findRecord
+        }
+    }
 }

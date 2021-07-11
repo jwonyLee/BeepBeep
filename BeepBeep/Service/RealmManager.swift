@@ -174,9 +174,22 @@ extension RealmManager {
                          sortedByKey: nil).first
     }
 
+    func findByItem(to identifier: ObjectId) -> Item? {
+        RealmManager.get(fromEntity: Item.self,
+                         withPredicate: NSPredicate(format: "identifier == %@", identifier),
+                         sortedByKey: nil).first
+    }
+
     func findByItem(at categoryIdentifier: ObjectId) -> Observable<[Item]>? {
         if let category: Category = findByCategory(to: categoryIdentifier) {
             return Observable.array(from: category.items)
+        }
+        return nil
+    }
+
+    func findByRecord(at itemIdentifier: ObjectId) -> Observable<[Record]>? {
+        if let item: Item = findByItem(to: itemIdentifier) {
+            return Observable.array(from: item.records)
         }
         return nil
     }
