@@ -7,6 +7,8 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
+import RxRealm
 
 private protocol RealmOperations {
     /// write operation
@@ -145,9 +147,8 @@ extension RealmManager: RealmOperations {
 
 extension RealmManager {
     // MARK: - functions
-    func getCategory() -> [Category] {
-        let categories: Results<Category> = RealmManager.get(fromEntity: Category.self)
-        return Array(categories)
+    func getCategory() -> Observable<[Category]> {
+        return Observable.array(from: RealmManager.get(fromEntity: Category.self))
     }
 
     func findByCategory(query: String) -> [Category] {

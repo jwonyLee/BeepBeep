@@ -128,7 +128,7 @@ extension MainViewController {
     }
 
     private func bindCollectionView() {
-        viewModel.categorySubject
+        viewModel.categoryObservable
             .bind(to: collectionView.rx.items(cellIdentifier: CollectionsCell.identifier, cellType: CollectionsCell.self)) { _, element, cell in
                 cell.configure(element)
             }
@@ -148,8 +148,6 @@ extension MainViewController {
             }
             .disposed(by: disposeBag)
     }
-
-    
 }
 
 // MARK: - CollectionView FlowLayout Delegate
