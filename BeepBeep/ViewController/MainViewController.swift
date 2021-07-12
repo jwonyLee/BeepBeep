@@ -86,7 +86,7 @@ extension MainViewController {
     private func setCollectionView() {
         collectionView.backgroundColor = .none
         collectionView.delegate = self
-        collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.identifier)
+        collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.reuseIdentifier)
     }
 
     private func setProgressViewConstraints() {
@@ -129,7 +129,7 @@ extension MainViewController {
 
     private func bindCollectionView() {
         viewModel.categoryObservable
-            .bind(to: collectionView.rx.items(cellIdentifier: CollectionsCell.identifier, cellType: CollectionsCell.self)) { _, element, cell in
+            .bind(to: collectionView.rx.items(cellIdentifier: CollectionsCell.reuseIdentifier, cellType: CollectionsCell.self)) { _, element, cell in
                 cell.configure(element)
             }
             .disposed(by: disposeBag)

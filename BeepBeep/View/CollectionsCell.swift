@@ -10,9 +10,6 @@ import SnapKit
 import Then
 
 class CollectionsCell: UICollectionViewCell {
-    // MARK: - Properties
-    static let identifier: String = "CollectionsCell"
-
     // MARK: - View Properties
     private var emojiLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true

@@ -11,6 +11,7 @@
 		84BE59AF918F93AD7210BC28 /* Pods_BeepBeep_BeepBeepUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D362CC3DD84D29946DF53D /* Pods_BeepBeep_BeepBeepUITests.framework */; };
 		8707BF6D26523C89004B082E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF6C26523C89004B082E /* RealmManager.swift */; };
 		8707BF7226526CD3004B082E /* CreateCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */; };
+		87164DCD269C2EDA004DCAB2 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87164DCC269C2EDA004DCAB2 /* UIView+.swift */; };
 		8718832C2678A6E500830492 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8718832B2678A6E500830492 /* RecordButton.swift */; };
 		871DDDFD2680984900851FDD /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871DDDFC2680984900851FDD /* RecordViewModel.swift */; };
 		873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873827E926622048008684D8 /* ListOfItemsViewController.swift */; };
@@ -64,6 +65,7 @@
 		73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeepBeepTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8707BF6C26523C89004B082E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		8707BF7126526CD3004B082E /* CreateCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewModel.swift; sourceTree = "<group>"; };
+		87164DCC269C2EDA004DCAB2 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		8718832B2678A6E500830492 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		871DDDFC2680984900851FDD /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		873827E926622048008684D8 /* ListOfItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfItemsViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				87A2A7E22667541300AB1647 /* String+.swift */,
 				87A2A7E52667589400AB1647 /* I18N.swift */,
 				87F163E8268B512B009360F8 /* UIViewController+.swift */,
+				87164DCC269C2EDA004DCAB2 /* UIView+.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				87C3C2C52646E27C007E7B8E /* RoundView.swift in Sources */,
 				87F163E9268B512B009360F8 /* UIViewController+.swift in Sources */,
 				87E87B262649414D007412F9 /* CollectionsCell.swift in Sources */,
+				87164DCD269C2EDA004DCAB2 /* UIView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
