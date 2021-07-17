@@ -14,7 +14,9 @@ import FloatingPanel
 
 class ItemDetailViewController: UIViewController {
     // MARK: - Properties
+    private let identifier: String = "ItemDetailCell"
     private let disposeBag: DisposeBag = DisposeBag()
+    let viewModel: ItemDetailViewModel = ItemDetailViewModel()
 
     // MARK: - View Properties
     private let titleLabel: UILabel = UILabel().then {
@@ -55,6 +57,7 @@ class ItemDetailViewController: UIViewController {
         setAnswerTextViewConstraints()
         setRecordTitleLabelConstraints()
         setTableViewConstraints()
+        bindTableView()
     }
 }
 
@@ -187,6 +190,14 @@ extension ItemDetailViewController {
             $0.trailing.equalTo(titleLabel.snp.trailing)
             $0.bottom.equalToSuperview().offset(-32)
         }
+    }
+
+    private func bindTableView() {
+        viewModel.recordObservable
+            .bind(to: tableView.rx.items(cellIdentifier: self.identifier)) { _, element, cell in
+                cell.textLabel?.text = element.createDate.description
+            }
+            .disposed(by: disposeBag)
     }
 }
 

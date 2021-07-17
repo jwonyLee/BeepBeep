@@ -10,9 +10,6 @@ import SnapKit
 import Then
 
 class CollectionsCell: UICollectionViewCell {
-    // MARK: - Properties
-    static let identifier: String = "CollectionsCell"
-
     // MARK: - View Properties
     private var emojiLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
@@ -50,6 +47,12 @@ class CollectionsCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not beem implemented")
+    }
+
+    func configure(_ category: Category) {
+        self.emojiLabel.text = category.emoji
+        self.nameLabel.text = category.name
+        self.countLabel.text = "\(category.items.count)"
     }
 }
 

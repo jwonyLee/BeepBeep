@@ -8,12 +8,13 @@ target 'BeepBeep' do
   # Pods for BeepBeep
   pod 'RxSwift', '6.1.0'
   pod 'RxCocoa', '6.1.0'
-  pod 'SwiftLint'
+  pod 'SwiftLint', '0.43.1'
   pod 'SnapKit', '~> 5.0.0'
-  pod 'Then'
-  pod 'RealmSwift'
-  pod 'ISEmojiView'
-  pod 'FloatingPanel'
+  pod 'Then', '2.7.0'
+  pod 'RealmSwift', '10.10.0'
+  pod 'ISEmojiView', '0.2.6'
+  pod 'FloatingPanel', '2.4.0'
+  pod 'RxRealm', '5.0.1'
 
   target 'BeepBeepTests' do
     inherit! :search_paths

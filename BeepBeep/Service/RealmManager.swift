@@ -7,6 +7,8 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
+import RxRealm
 
 private protocol RealmOperations {
     /// write operation
@@ -145,11 +147,50 @@ extension RealmManager: RealmOperations {
 
 extension RealmManager {
     // MARK: - functions
+    func getCategories() -> Observable<[Category]> {
+        Observable.array(from: RealmManager.get(fromEntity: Category.self))
+    }
+
+    func findByCategory(to identifier: ObjectId) -> Observable<Category>? {
+        if let find: Category = RealmManager.get(fromEntity: Category.self,
+                                                 withPredicate: NSPredicate(format: "identifier == %@", identifier),
+                                                 sortedByKey: nil).first {
+            return Observable.from(object: find)
+        }
+        return nil
+    }
+
     func findByCategory(query: String) -> [Category] {
         let categories: Results<Category> = RealmManager.get(fromEntity: Category.self,
                                                              withPredicate: NSPredicate(format: "name == %@", query),
                                                              sortedByKey: "name",
                                                              inAscending: true)
         return Array(categories)
+    }
+
+    func findByCategory(to identifier: ObjectId) -> Category? {
+        RealmManager.get(fromEntity: Category.self,
+                         withPredicate: NSPredicate(format: "identifier == %@", identifier),
+                         sortedByKey: nil).first
+    }
+
+    func findByItem(to identifier: ObjectId) -> Item? {
+        RealmManager.get(fromEntity: Item.self,
+                         withPredicate: NSPredicate(format: "identifier == %@", identifier),
+                         sortedByKey: nil).first
+    }
+
+    func findByItem(at categoryIdentifier: ObjectId) -> Observable<[Item]>? {
+        if let category: Category = findByCategory(to: categoryIdentifier) {
+            return Observable.array(from: category.items)
+        }
+        return nil
+    }
+
+    func findByRecord(at itemIdentifier: ObjectId) -> Observable<[Record]>? {
+        if let item: Item = findByItem(to: itemIdentifier) {
+            return Observable.array(from: item.records)
+        }
+        return nil
     }
 }

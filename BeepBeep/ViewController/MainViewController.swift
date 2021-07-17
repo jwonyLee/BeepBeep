@@ -10,10 +10,12 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 class MainViewController: UIViewController {
     // MARK: - Properties
     private let disposeBag: DisposeBag = DisposeBag()
+    private let viewModel: MainViewModel = MainViewModel()
 
     // MARK: - View Properties
     private let progressView: RoundView = RoundView().then {
@@ -83,9 +85,8 @@ extension MainViewController {
 
     private func setCollectionView() {
         collectionView.backgroundColor = .none
-        collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.identifier)
+        collectionView.register(CollectionsCell.self, forCellWithReuseIdentifier: CollectionsCell.reuseIdentifier)
     }
 
     private func setProgressViewConstraints() {
@@ -127,30 +128,34 @@ extension MainViewController {
     }
 
     private func bindCollectionView() {
+        viewModel.categoryObservable
+            .bind(to: collectionView.rx.items(cellIdentifier: CollectionsCell.reuseIdentifier, cellType: CollectionsCell.self)) { _, element, cell in
+                cell.configure(element)
+            }
+            .disposed(by: disposeBag)
+
         collectionView.rx.itemSelected
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
                 let listOfItemsViewController: ListOfItemsViewController = ListOfItemsViewController()
-                listOfItemsViewController.title = "\(indexPath.row)"
+                self.viewModel.categoryObservable
+                    .compactMap { $0[indexPath.row] }
+                    .map { $0.emoji + $0.name }
+                    .subscribe(onNext: { title in
+                        listOfItemsViewController.rx.title.onNext(title)
+                    })
+                    .disposed(by: self.disposeBag)
+
+                self.viewModel.categoryObservable
+                    .compactMap { $0[indexPath.row] }
+                    .subscribe { category in
+                        listOfItemsViewController.viewModel.setCategory(at: category)
+                    }.disposed(by: self.disposeBag)
+
                 self.navigationController?.pushViewController(listOfItemsViewController, animated: true)
             }
             .disposed(by: disposeBag)
-    }
-}
-
-// MARK: - CollectionView Datasource
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionsCell.identifier, for: indexPath) as? CollectionsCell else {
-            return CollectionsCell()
-        }
-
-        return cell
     }
 }
 
