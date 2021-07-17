@@ -28,6 +28,7 @@
 		878BDB7B26A26FDF00D6F5A1 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7226A26FDF00D6F5A1 /* Pretendard-SemiBold.otf */; };
 		878BDB7C26A26FDF00D6F5A1 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7326A26FDF00D6F5A1 /* Pretendard-Bold.otf */; };
 		878BDB7D26A26FDF00D6F5A1 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7426A26FDF00D6F5A1 /* Pretendard-Light.otf */; };
+		878BDB7F26A2731C00D6F5A1 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BDB7E26A2731C00D6F5A1 /* UIFont+.swift */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
 		8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFD26441F8600F8578C /* SceneDelegate.swift */; };
 		8793FE0026441F8600F8578C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFF26441F8600F8578C /* MainViewController.swift */; };
@@ -91,6 +92,7 @@
 		878BDB7226A26FDF00D6F5A1 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		878BDB7326A26FDF00D6F5A1 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		878BDB7426A26FDF00D6F5A1 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		878BDB7E26A2731C00D6F5A1 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FDFB26441F8600F8578C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8793FDFD26441F8600F8578C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				87A2A7E52667589400AB1647 /* I18N.swift */,
 				87F163E8268B512B009360F8 /* UIViewController+.swift */,
 				87164DCC269C2EDA004DCAB2 /* UIView+.swift */,
+				878BDB7E26A2731C00D6F5A1 /* UIFont+.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				876CC4AA269311E5007E47DC /* ListOfItemsViewModel.swift in Sources */,
 				8718832C2678A6E500830492 /* RecordButton.swift in Sources */,
 				873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */,
+				878BDB7F26A2731C00D6F5A1 /* UIFont+.swift in Sources */,
 				87DCC2CC264EA24F008FE490 /* CreateCategoryViewController.swift in Sources */,
 				876CC4A82693114D007E47DC /* MainViewModel.swift in Sources */,
 				87A2A7E32667541300AB1647 /* String+.swift in Sources */,
