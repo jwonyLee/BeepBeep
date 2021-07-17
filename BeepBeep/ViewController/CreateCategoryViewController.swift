@@ -29,7 +29,7 @@ class CreateCategoryViewController: UIViewController {
 
     private let nameLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
-        $0.font = UIFont.preferredFont(forTextStyle: .title1)
+        $0.font = UIFont.pretendardTitle1
         $0.textAlignment = .left
         $0.text = I18N.newCollectionNameFieldDescription.localized
         $0.textColor = .label
@@ -37,7 +37,7 @@ class CreateCategoryViewController: UIViewController {
 
     private let nameField: UITextField = UITextField().then {
         $0.adjustsFontForContentSizeCategory = true
-        $0.font = UIFont.preferredFont(forTextStyle: .title2)
+        $0.font = UIFont.pretendardBody
         $0.placeholder = I18N.newCollectionNameFieldPlaceholder.localized
         $0.backgroundColor = UIColor(named: "BeepGray")
         $0.layer.masksToBounds = false
