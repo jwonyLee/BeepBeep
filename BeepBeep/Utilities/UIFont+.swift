@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIFont {
-    enum Pretendard: String {
+    private enum Pretendard: String {
         case black = "Pretendard-Black"
         case bold = "Pretendard-Bold"
         case extraBold = "Pretendard-ExtraBold"
