@@ -19,6 +19,16 @@
 		876CC4A82693114D007E47DC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876CC4A72693114D007E47DC /* MainViewModel.swift */; };
 		876CC4AA269311E5007E47DC /* ListOfItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876CC4A9269311E5007E47DC /* ListOfItemsViewModel.swift */; };
 		876CC4AC26931504007E47DC /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876CC4AB26931504007E47DC /* ItemDetailViewModel.swift */; };
+		878BDB7526A26FDF00D6F5A1 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB6C26A26FDE00D6F5A1 /* Pretendard-Medium.otf */; };
+		878BDB7626A26FDF00D6F5A1 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB6D26A26FDE00D6F5A1 /* Pretendard-Black.otf */; };
+		878BDB7726A26FDF00D6F5A1 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB6E26A26FDE00D6F5A1 /* Pretendard-ExtraBold.otf */; };
+		878BDB7826A26FDF00D6F5A1 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB6F26A26FDF00D6F5A1 /* Pretendard-ExtraLight.otf */; };
+		878BDB7926A26FDF00D6F5A1 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7026A26FDF00D6F5A1 /* Pretendard-Regular.otf */; };
+		878BDB7A26A26FDF00D6F5A1 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7126A26FDF00D6F5A1 /* Pretendard-Thin.otf */; };
+		878BDB7B26A26FDF00D6F5A1 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7226A26FDF00D6F5A1 /* Pretendard-SemiBold.otf */; };
+		878BDB7C26A26FDF00D6F5A1 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7326A26FDF00D6F5A1 /* Pretendard-Bold.otf */; };
+		878BDB7D26A26FDF00D6F5A1 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 878BDB7426A26FDF00D6F5A1 /* Pretendard-Light.otf */; };
+		878BDB7F26A2731C00D6F5A1 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BDB7E26A2731C00D6F5A1 /* UIFont+.swift */; };
 		8793FDFC26441F8600F8578C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFB26441F8600F8578C /* AppDelegate.swift */; };
 		8793FDFE26441F8600F8578C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFD26441F8600F8578C /* SceneDelegate.swift */; };
 		8793FE0026441F8600F8578C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793FDFF26441F8600F8578C /* MainViewController.swift */; };
@@ -73,6 +83,16 @@
 		876CC4A72693114D007E47DC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		876CC4A9269311E5007E47DC /* ListOfItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfItemsViewModel.swift; sourceTree = "<group>"; };
 		876CC4AB26931504007E47DC /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
+		878BDB6C26A26FDE00D6F5A1 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		878BDB6D26A26FDE00D6F5A1 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		878BDB6E26A26FDE00D6F5A1 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		878BDB6F26A26FDF00D6F5A1 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		878BDB7026A26FDF00D6F5A1 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		878BDB7126A26FDF00D6F5A1 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		878BDB7226A26FDF00D6F5A1 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		878BDB7326A26FDF00D6F5A1 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		878BDB7426A26FDF00D6F5A1 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		878BDB7E26A2731C00D6F5A1 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		8793FDF826441F8600F8578C /* BeepBeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeepBeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8793FDFB26441F8600F8578C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8793FDFD26441F8600F8578C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +217,7 @@
 				87A2A7E52667589400AB1647 /* I18N.swift */,
 				87F163E8268B512B009360F8 /* UIViewController+.swift */,
 				87164DCC269C2EDA004DCAB2 /* UIView+.swift */,
+				878BDB7E26A2731C00D6F5A1 /* UIFont+.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -209,6 +230,22 @@
 				8718832B2678A6E500830492 /* RecordButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		878BDB6B26A26FC000D6F5A1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				878BDB6D26A26FDE00D6F5A1 /* Pretendard-Black.otf */,
+				878BDB7326A26FDF00D6F5A1 /* Pretendard-Bold.otf */,
+				878BDB6E26A26FDE00D6F5A1 /* Pretendard-ExtraBold.otf */,
+				878BDB6F26A26FDF00D6F5A1 /* Pretendard-ExtraLight.otf */,
+				878BDB7426A26FDF00D6F5A1 /* Pretendard-Light.otf */,
+				878BDB6C26A26FDE00D6F5A1 /* Pretendard-Medium.otf */,
+				878BDB7026A26FDF00D6F5A1 /* Pretendard-Regular.otf */,
+				878BDB7226A26FDF00D6F5A1 /* Pretendard-SemiBold.otf */,
+				878BDB7126A26FDF00D6F5A1 /* Pretendard-Thin.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		8793FDEF26441F8600F8578C = {
@@ -270,6 +307,7 @@
 		87A2A7E42667579600AB1647 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				878BDB6B26A26FC000D6F5A1 /* Fonts */,
 				8793FDFB26441F8600F8578C /* AppDelegate.swift */,
 				8793FDFD26441F8600F8578C /* SceneDelegate.swift */,
 				8793FE0726441F8800F8578C /* Assets.xcassets */,
@@ -399,9 +437,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				878BDB7D26A26FDF00D6F5A1 /* Pretendard-Light.otf in Resources */,
+				878BDB7B26A26FDF00D6F5A1 /* Pretendard-SemiBold.otf in Resources */,
+				878BDB7C26A26FDF00D6F5A1 /* Pretendard-Bold.otf in Resources */,
 				87A2A7DD2667534A00AB1647 /* Localizable.strings in Resources */,
+				878BDB7A26A26FDF00D6F5A1 /* Pretendard-Thin.otf in Resources */,
+				878BDB7526A26FDF00D6F5A1 /* Pretendard-Medium.otf in Resources */,
+				878BDB7826A26FDF00D6F5A1 /* Pretendard-ExtraLight.otf in Resources */,
+				878BDB7726A26FDF00D6F5A1 /* Pretendard-ExtraBold.otf in Resources */,
+				878BDB7926A26FDF00D6F5A1 /* Pretendard-Regular.otf in Resources */,
 				87531C8826457016009644EE /* .swiftlint.yml in Resources */,
 				8793FE0B26441F8800F8578C /* LaunchScreen.storyboard in Resources */,
+				878BDB7626A26FDF00D6F5A1 /* Pretendard-Black.otf in Resources */,
 				8793FE0826441F8800F8578C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +611,7 @@
 				876CC4AA269311E5007E47DC /* ListOfItemsViewModel.swift in Sources */,
 				8718832C2678A6E500830492 /* RecordButton.swift in Sources */,
 				873827EA26622048008684D8 /* ListOfItemsViewController.swift in Sources */,
+				878BDB7F26A2731C00D6F5A1 /* UIFont+.swift in Sources */,
 				87DCC2CC264EA24F008FE490 /* CreateCategoryViewController.swift in Sources */,
 				876CC4A82693114D007E47DC /* MainViewModel.swift in Sources */,
 				87A2A7E32667541300AB1647 /* String+.swift in Sources */,

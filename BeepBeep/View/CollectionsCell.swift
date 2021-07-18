@@ -13,14 +13,14 @@ class CollectionsCell: UICollectionViewCell {
     // MARK: - View Properties
     private var emojiLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
-        $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        $0.font = UIFont.pretendardLargeTitle
         $0.text = "🌩"
         $0.textColor = .label
     }
 
     private var nameLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
-        $0.font = UIFont.preferredFont(forTextStyle: .headline)
+        $0.font = UIFont.pretendardHeadline
         $0.text = "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum"
         $0.numberOfLines = 1
         $0.textAlignment = .left
@@ -29,7 +29,7 @@ class CollectionsCell: UICollectionViewCell {
 
     private var countLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
-        $0.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        $0.font = UIFont.pretendardSubheadline
         $0.text = "17"
         $0.textColor = .label
     }

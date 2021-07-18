@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
 
     private let categoryHeaderLabel: UILabel = UILabel().then {
         $0.text = I18N.collection.localized
-        $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        $0.font = UIFont.pretendardLargeTitle
     }
 
     private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
     private var newCategoryButton: UIButton = UIButton().then {
         $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.titleLabel?.numberOfLines = 1
-        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.titleLabel?.font = UIFont.pretendardBody
         $0.backgroundColor = .label
         $0.setImage(UIImage(systemName: "folder.badge.plus"), for: .normal)
         $0.tintColor = .systemBackground
@@ -72,6 +72,7 @@ extension MainViewController {
     private func configureNavigation() {
         self.title = I18N.title.localized
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
     }
 
     private func configureViews() {

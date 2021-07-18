@@ -25,7 +25,7 @@ class ListOfItemsViewController: UIViewController {
     private let practiceButton: UIButton = UIButton().then {
         $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.titleLabel?.numberOfLines = 1
-        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.titleLabel?.font = UIFont.pretendardBody
         $0.backgroundColor = .label
         $0.setImage(UIImage(systemName: "mic"), for: .normal)
         $0.tintColor = .systemBackground
@@ -63,7 +63,7 @@ class ListOfItemsViewController: UIViewController {
 extension ListOfItemsViewController {
     private func configureNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = true
-
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
     }
 

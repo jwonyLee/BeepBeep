@@ -20,13 +20,13 @@ class ItemDetailViewController: UIViewController {
 
     // MARK: - View Properties
     private let titleLabel: UILabel = UILabel().then {
-        $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        $0.font = UIFont.pretendardLargeTitle
         $0.text = "What is your favorite?"
         $0.textColor = .label
     }
 
     private let answerTextView: UITextView = UITextView().then {
-        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.font = UIFont.pretendardBody
         $0.isEditable = false
         $0.backgroundColor = UIColor(named: "BeepGray")
         $0.textColor = .label
@@ -35,7 +35,7 @@ class ItemDetailViewController: UIViewController {
     }
 
     private let recordTitleLabel: UILabel = UILabel().then {
-        $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        $0.font = UIFont.pretendardLargeTitle
         $0.text = "Detail Blah"
         $0.textColor = .label
     }
@@ -97,6 +97,7 @@ extension ItemDetailViewController {
 
     private func configureNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
 
         if #available(iOS 14.0, *) {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "",
