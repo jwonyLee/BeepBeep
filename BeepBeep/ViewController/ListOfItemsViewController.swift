@@ -63,7 +63,7 @@ class ListOfItemsViewController: UIViewController {
 extension ListOfItemsViewController {
     private func configureNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = true
-
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
     }
 

@@ -64,9 +64,9 @@ class CreateCategoryViewController: UIViewController {
 
 extension CreateCategoryViewController {
     private func configureNavigation() {
-        self.title = "🗂 \(I18N.newCollectionTitle)"
+        self.title = "🗂 \(I18N.newCollectionTitle.localized)"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: nil)
     }
 

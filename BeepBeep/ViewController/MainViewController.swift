@@ -72,6 +72,7 @@ extension MainViewController {
     private func configureNavigation() {
         self.title = I18N.title.localized
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
     }
 
     private func configureViews() {

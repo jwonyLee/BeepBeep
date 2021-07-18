@@ -97,6 +97,7 @@ extension ItemDetailViewController {
 
     private func configureNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
 
         if #available(iOS 14.0, *) {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "",
