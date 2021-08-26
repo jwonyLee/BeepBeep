@@ -10,7 +10,7 @@ import RxSwift
 
 class ItemDetailViewModel {
     private let disposeBag: DisposeBag = DisposeBag()
-    private var item: Item = Item()
+    var item: Item = Item()
     private(set) var recordObservable: Observable<[Record]> = Observable.just([])
 
     func setItem(at item: Item) {

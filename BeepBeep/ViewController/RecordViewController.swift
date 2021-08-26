@@ -47,6 +47,10 @@ class RecordViewController: UIViewController {
             }
         }
     }
+
+    func setItem(at item: Item) {
+        viewModel.setItem(at: item)
+    }
 }
 
 extension RecordViewController {

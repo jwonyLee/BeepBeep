@@ -117,8 +117,9 @@ extension ListOfItemsViewController {
                 let itemDetailViewController: ItemDetailViewController = ItemDetailViewController()
                 self.viewModel.itemObservable
                     .compactMap { $0[indexPath.row] }
-                    .map { $0.title }
-                    .bind(to: itemDetailViewController.rx.title)
+                    .subscribe { item in
+                        itemDetailViewController.viewModel.setItem(at: item)
+                    }
                     .disposed(by: self.disposeBag)
                 self.navigationController?.pushViewController(itemDetailViewController, animated: true)
             }

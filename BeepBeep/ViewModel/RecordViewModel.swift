@@ -13,6 +13,9 @@ import RxCocoa
 
 class RecordViewModel: NSObject {
     private let disposeBag: DisposeBag = DisposeBag()
+    
+    private var item: Item = Item()
+    
     private var isRecording: Bool = false {
         didSet {
             isRecordingRelay.accept(isRecording)
@@ -35,6 +38,10 @@ class RecordViewModel: NSObject {
         super.init()
         configureAudioRecorder()
     }
+    
+    func setItem(at item: Item) {
+        self.item = item
+    }
 
     func recording() {
         requestMicrophoneAccess { [weak self] allowed in
@@ -49,8 +56,8 @@ class RecordViewModel: NSObject {
                 DispatchQueue.main.async {
                     self?.isRecording.toggle()
                 }
-            } else { // 녹음 권한 거부
-                print("녹음 권한 거부해서 녹음을 할 수 없어요.")
+            } else {
+                // TODO: 녹음 권한 거부 처리
             }
         }
     }
@@ -119,7 +126,9 @@ extension RecordViewModel {
 
     /// save Record in Realm
     private func saveRecord(_ newRecord: Record) {
-        RealmManager.add(newRecord)
+        RealmManager.update(item) { item in
+            item.records.append(newRecord)
+        }
     }
 }
 

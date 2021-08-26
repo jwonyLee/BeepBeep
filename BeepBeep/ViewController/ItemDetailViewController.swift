@@ -139,7 +139,7 @@ extension ItemDetailViewController {
 
     private func setTableView() {
         tableView.backgroundColor = .none
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.identifier)
     }
 
     private func setFloatingPanelController() {
@@ -154,6 +154,7 @@ extension ItemDetailViewController {
         floatingPanelController.surfaceView.appearance = appearance
 
         let recordViewController: RecordViewController = RecordViewController()
+        recordViewController.setItem(at: viewModel.item)
         floatingPanelController.set(contentViewController: recordViewController)
 
         floatingPanelController.addPanel(toParent: self)
@@ -187,9 +188,9 @@ extension ItemDetailViewController {
     private func setTableViewConstraints() {
         tableView.snp.makeConstraints {
             $0.leading.equalTo(titleLabel.snp.leading)
-            $0.top.equalTo(recordTitleLabel.snp.bottom).offset(32)
+            $0.top.equalTo(recordTitleLabel.snp.bottom)
             $0.trailing.equalTo(titleLabel.snp.trailing)
-            $0.bottom.equalToSuperview().offset(-32)
+            $0.bottom.equalToSuperview()
         }
     }
 
