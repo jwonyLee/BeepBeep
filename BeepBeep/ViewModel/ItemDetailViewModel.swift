@@ -14,10 +14,10 @@ class ItemDetailViewModel: NSObject {
     private let disposeBag: DisposeBag = DisposeBag()
     var item: Item = Item()
     private(set) var recordObservable: Observable<[Record]> = Observable.just([])
-    
+
     // MARK: Audio
     private var audioPlayer: AVAudioPlayer?
-    
+
     override init() {
         super.init()
         audioPlayer?.delegate = self
@@ -41,6 +41,27 @@ class ItemDetailViewModel: NSObject {
                 }
             })
             .disposed(by: disposeBag)
+    }
+
+    func deleteItem(at index: Int) {
+        recordObservable
+            .compactMap { $0[index] }
+            .subscribe(onNext: { [weak self] record in
+                guard let fileURL: URL = URL(string: record.filePath) else {
+                    fatalError("invalid URL")
+                }
+                self?.removeFile(at: fileURL)
+                RealmManager.delete(fromEntity: Record.self, withPredicate: NSPredicate(format: "identifier == %@", record.identifier))
+            })
+            .dispose()
+    }
+
+    func removeFile(at url: URL) {
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch {
+            print("Could not remove File: \(error.localizedDescription)")
+        }
     }
 }
 

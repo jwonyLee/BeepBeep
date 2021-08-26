@@ -96,12 +96,14 @@ extension RecordViewModel {
 
     private func configureAudioRecorder() {
         audioRecorder = try? AVAudioRecorder(url: recordURL, settings: recorderSettings)
-        audioRecorder?.delegate = self
         audioRecorder?.isMeteringEnabled = true
     }
 
     /// 녹음 시작
     private func record() {
+        recordURL = makeRecordURL()
+        audioRecorder = try? AVAudioRecorder(url: recordURL, settings: recorderSettings)
+
         if let recorder: AVAudioRecorder = self.audioRecorder {
             recorder.prepareToRecord()
             let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
@@ -121,8 +123,10 @@ extension RecordViewModel {
             let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
             do {
                 try audioSession.setActive(false)
-                recordURL = makeRecordURL()
-                audioRecorder = try? AVAudioRecorder(url: recordURL, settings: recorderSettings)
+                self.audioPlayer = try? AVAudioPlayer(contentsOf: self.recordURL)
+                let duration: TimeInterval = self.audioPlayer?.duration ?? 0.0
+                let record: Record = Record(filePath: self.recordURL.absoluteString, interval: duration)
+                self.saveRecord(record)
             } catch {
                 fatalError(error.localizedDescription)
             }
@@ -133,18 +137,6 @@ extension RecordViewModel {
     private func saveRecord(_ newRecord: Record) {
         RealmManager.update(item) { item in
             item.records.append(newRecord)
-        }
-    }
-}
-
-// MARK: - Delegate
-extension RecordViewModel: AVAudioRecorderDelegate {
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if flag { // 녹음이 끝났을 때
-            self.audioPlayer = try? AVAudioPlayer(contentsOf: self.recordURL)
-            let duration: TimeInterval = self.audioPlayer?.duration ?? 0.0
-            let record: Record = Record(filePath: self.recordURL.absoluteString, interval: duration)
-            self.saveRecord(record)
         }
     }
 }
