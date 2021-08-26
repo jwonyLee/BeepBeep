@@ -47,16 +47,19 @@ class ItemDetailViewModel: NSObject {
         recordObservable
             .compactMap { $0[index] }
             .subscribe(onNext: { [weak self] record in
-                guard let fileURL: URL = URL(string: record.filePath) else {
-                    fatalError("invalid URL")
-                }
+                let documentsURL: URL = {
+                    let paths: [URL] = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                    return paths.first!
+                }()
+                let fileURL: URL = documentsURL.appendingPathComponent(record.filePath)
+
                 self?.removeFile(at: fileURL)
                 RealmManager.delete(fromEntity: Record.self, withPredicate: NSPredicate(format: "identifier == %@", record.identifier))
             })
             .dispose()
     }
 
-    func removeFile(at url: URL) {
+    private func removeFile(at url: URL) {
         do {
             try FileManager.default.removeItem(at: url)
         } catch {

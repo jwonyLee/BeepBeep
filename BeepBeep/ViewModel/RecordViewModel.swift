@@ -31,6 +31,7 @@ class RecordViewModel: NSObject {
     ]
     private var audioRecorder: AVAudioRecorder?
     private var audioPlayer: AVAudioPlayer?
+    private var fileName: String = UUID.init().uuidString + ".m4a"
     private lazy var recordURL: URL = makeRecordURL()
     let isRecordingRelay: PublishRelay<Bool> = PublishRelay<Bool>()
 
@@ -89,7 +90,7 @@ extension RecordViewModel {
             let paths: [URL] = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             return paths.first!
         }()
-        let fileName: String = UUID.init().uuidString + ".m4a"
+        fileName = UUID.init().uuidString + ".m4a"
         let url: URL = documentsURL.appendingPathComponent(fileName)
         return url
     }
@@ -125,7 +126,7 @@ extension RecordViewModel {
                 try audioSession.setActive(false)
                 self.audioPlayer = try? AVAudioPlayer(contentsOf: self.recordURL)
                 let duration: TimeInterval = self.audioPlayer?.duration ?? 0.0
-                let record: Record = Record(filePath: self.recordURL.absoluteString, interval: duration)
+                let record: Record = Record(filePath: fileName, interval: duration)
                 self.saveRecord(record)
             } catch {
                 fatalError(error.localizedDescription)
