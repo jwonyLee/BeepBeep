@@ -107,7 +107,7 @@ extension RecordViewController {
     }
 
     private func showSettingsAlert() {
-        let settingAction: UIAlertAction = UIAlertAction(title: "Settings", style: .default, handler: { _ in
+        let settingAction: UIAlertAction = UIAlertAction(title: I18N.setting.localized, style: .default, handler: { _ in
             DispatchQueue.main.async {
                 if let settingsURL: URL = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(settingsURL,
@@ -116,7 +116,7 @@ extension RecordViewController {
                 }
             }
         })
-        let cancleAction: UIAlertAction = UIAlertAction(title: "Cancle", style: .cancel)
+        let cancleAction: UIAlertAction = UIAlertAction(title: I18N.cancle.localized, style: .cancel)
 
         DispatchQueue.main.async {
             self.showAlert(title: "Michrophone Error!", message: "Not Authorized to Access the Microphone!", actions: settingAction, cancleAction)

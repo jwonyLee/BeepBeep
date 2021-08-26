@@ -13,7 +13,10 @@
 "newCollectionTitle" = "Create New Collection";
 "newCollectionNameFieldDescription" = "What is the Collection name?";
 "newCollectionNameFieldPlaceholder" = "Write the name of Collection here.";
+"setting" = "Setting";
+"confirm" = "Confirm";
 "modify" = "Modify";
 "delete" = "Delete";
 "cancle" = "Cancle";
 "selectOption"= "Select a Option";
+"addItemTitle" = "Create New Item";

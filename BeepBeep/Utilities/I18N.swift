@@ -15,10 +15,13 @@ enum I18N: String {
     case newCollectionTitle = "newCollectionTitle"
     case newCollectionNameFieldDescription = "newCollectionNameFieldDescription"
     case newCollectionNameFieldPlaceholder = "newCollectionNameFieldPlaceholder"
+    case setting = "setting"
+    case confirm = "confirm"
     case modify = "modify"
     case delete = "delete"
     case cancle = "cancle"
     case actionsheetMessage = "selectOption"
+    case addItemTitle = "addItemTitle"
 
     var localized: String {
         self.rawValue.localized

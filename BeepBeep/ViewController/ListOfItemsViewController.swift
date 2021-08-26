@@ -64,7 +64,7 @@ extension ListOfItemsViewController {
     private func configureNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
     }
 
     private func configureViews() {
@@ -123,5 +123,22 @@ extension ListOfItemsViewController {
                 self.navigationController?.pushViewController(itemDetailViewController, animated: true)
             }
             .disposed(by: disposeBag)
+    }
+
+    @objc
+    private func addItem() {
+        let alertViewController: UIAlertController = UIAlertController(title: I18N.addItemTitle.localized,
+                                                                       message: "질문을 입력해주세요.",
+                                                                       preferredStyle: .alert)
+        let addAction: UIAlertAction = UIAlertAction(title: I18N.confirm.localized, style: .default, handler: { [weak self] _ in
+            self?.viewModel.addItem(with: alertViewController.textFields?[0].text ?? "")
+        })
+        let cancleAction: UIAlertAction = UIAlertAction(title: I18N.cancle.localized, style: .cancel)
+        alertViewController.addAction(addAction)
+        alertViewController.addAction(cancleAction)
+
+        alertViewController.addTextField { $0.placeholder = "질문을 입력해주세요." }
+
+        self.present(alertViewController, animated: true)
     }
 }

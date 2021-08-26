@@ -19,4 +19,11 @@ class ListOfItemsViewModel {
             itemObservable = findItem
         }
     }
+    
+    func addItem(with title: String, content: String = "", interval: TimeInterval = 0) {
+        let newItem: Item = Item(title: title, content: content, interval: interval)
+        RealmManager.update(category) { category in
+            category.items.append(newItem)
+        }
+    }
 }
