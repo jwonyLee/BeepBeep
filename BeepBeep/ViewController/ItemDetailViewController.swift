@@ -200,6 +200,14 @@ extension ItemDetailViewController {
                 cell.textLabel?.text = element.createDate.description
             }
             .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind { [weak self] indexPath in
+                guard let self = self else { return }
+                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.viewModel.play(at: indexPath.row)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

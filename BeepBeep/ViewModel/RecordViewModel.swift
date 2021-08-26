@@ -13,9 +13,9 @@ import RxCocoa
 
 class RecordViewModel: NSObject {
     private let disposeBag: DisposeBag = DisposeBag()
-    
+
     private var item: Item = Item()
-    
+
     private var isRecording: Bool = false {
         didSet {
             isRecordingRelay.accept(isRecording)
