@@ -34,13 +34,16 @@ class ItemDetailViewModel: NSObject {
             .map { $0[index] }
             .subscribe(onNext: { [weak self] record in
                 guard let self = self else { return }
-                if let url: URL = URL(string: record.filePath) {
-                    self.audioPlayer = try? AVAudioPlayer(contentsOf: url)
-                    self.audioPlayer?.volume = audioSession.outputVolume
-                    self.audioPlayer?.play()
-                }
+                let documentsURL: URL = {
+                    let paths: [URL] = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                    return paths.first!
+                }()
+                let fileURL: URL = documentsURL.appendingPathComponent(record.filePath)
+                self.audioPlayer = try? AVAudioPlayer(contentsOf: fileURL)
+                self.audioPlayer?.volume = audioSession.outputVolume
+                self.audioPlayer?.play()
             })
-            .disposed(by: disposeBag)
+            .dispose()
     }
 
     func deleteItem(at index: Int) {
