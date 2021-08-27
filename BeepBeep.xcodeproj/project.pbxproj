@@ -47,6 +47,7 @@
 		87DCC2B5264D6C06008FE490 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2B4264D6C06008FE490 /* Record.swift */; };
 		87DCC2CC264EA24F008FE490 /* CreateCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DCC2CB264EA24F008FE490 /* CreateCategoryViewController.swift */; };
 		87E87B262649414D007412F9 /* CollectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E87B252649414C007412F9 /* CollectionsCell.swift */; };
+		87E8B1F926D891A700325E6D /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E8B1F826D891A700325E6D /* TimeInterval+.swift */; };
 		87F163E9268B512B009360F8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F163E8268B512B009360F8 /* UIViewController+.swift */; };
 		9A333AE5EB64640232A3DABD /* Pods_BeepBeepTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73145F053A01F519BB9FB5D4 /* Pods_BeepBeepTests.framework */; };
 /* End PBXBuildFile section */
@@ -119,6 +120,7 @@
 		87DCC2B4264D6C06008FE490 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		87DCC2CB264EA24F008FE490 /* CreateCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewController.swift; sourceTree = "<group>"; };
 		87E87B252649414C007412F9 /* CollectionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCell.swift; sourceTree = "<group>"; };
+		87E8B1F826D891A700325E6D /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		87F163E8268B512B009360F8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		925C829051D74A86CCC11AB2 /* Pods-BeepBeep.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeep.release.xcconfig"; path = "Target Support Files/Pods-BeepBeep/Pods-BeepBeep.release.xcconfig"; sourceTree = "<group>"; };
 		A886C989FECBB5C43DA9948D /* Pods-BeepBeep-BeepBeepUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeepBeep-BeepBeepUITests.release.xcconfig"; path = "Target Support Files/Pods-BeepBeep-BeepBeepUITests/Pods-BeepBeep-BeepBeepUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				87F163E8268B512B009360F8 /* UIViewController+.swift */,
 				87164DCC269C2EDA004DCAB2 /* UIView+.swift */,
 				878BDB7E26A2731C00D6F5A1 /* UIFont+.swift */,
+				87E8B1F826D891A700325E6D /* TimeInterval+.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				876CC4AC26931504007E47DC /* ItemDetailViewModel.swift in Sources */,
+				87E8B1F926D891A700325E6D /* TimeInterval+.swift in Sources */,
 				87DCC2B3264D6BFF008FE490 /* Item.swift in Sources */,
 				87A2A7E62667589400AB1647 /* I18N.swift in Sources */,
 				8793FE0026441F8600F8578C /* MainViewController.swift in Sources */,

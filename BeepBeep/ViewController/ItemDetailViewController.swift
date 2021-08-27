@@ -16,6 +16,7 @@ class ItemDetailViewController: UIViewController {
     // MARK: - Properties
     private let identifier: String = "ItemDetailCell"
     private let disposeBag: DisposeBag = DisposeBag()
+    private let dateFormatter: RelativeDateTimeFormatter = RelativeDateTimeFormatter()
     let viewModel: ItemDetailViewModel = ItemDetailViewModel()
 
     // MARK: - View Properties
@@ -34,7 +35,7 @@ class ItemDetailViewController: UIViewController {
         $0.textColor = .label
     }
 
-    private let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
+    private let recordTableView: UITableView = UITableView(frame: .zero, style: .grouped)
 
     private lazy var floatingPanelController: FloatingPanelController = FloatingPanelController()
 
@@ -127,12 +128,12 @@ extension ItemDetailViewController {
     private func configureViews() {
         view.addSubview(answerTextView)
         view.addSubview(recordTitleLabel)
-        view.addSubview(tableView)
+        view.addSubview(recordTableView)
     }
 
     private func setTableView() {
-        tableView.backgroundColor = .none
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.identifier)
+        recordTableView.backgroundColor = .none
+        recordTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.identifier)
     }
 
     private func setFloatingPanelController() {
@@ -171,7 +172,7 @@ extension ItemDetailViewController {
     }
 
     private func setTableViewConstraints() {
-        tableView.snp.makeConstraints {
+        recordTableView.snp.makeConstraints {
             $0.leading.equalTo(answerTextView.snp.leading)
             $0.top.equalTo(recordTitleLabel.snp.bottom)
             $0.trailing.equalTo(answerTextView.snp.trailing)
@@ -181,20 +182,24 @@ extension ItemDetailViewController {
 
     private func bindTableView() {
         viewModel.recordObservable
-            .bind(to: tableView.rx.items(cellIdentifier: self.identifier)) { _, element, cell in
-                cell.textLabel?.text = element.createDate.description
+            .bind(to: recordTableView.rx.items) { [weak self] _, row, record in
+                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: self?.identifier)
+                cell.textLabel?.text = self?.dateFormatter.localizedString(for: record.createDate, relativeTo: Date())
+                cell.detailTextLabel?.textColor = .systemGray
+                cell.detailTextLabel?.text = record.interval.stringTime
+                return cell
             }
             .disposed(by: disposeBag)
 
-        tableView.rx.itemSelected
+        recordTableView.rx.itemSelected
             .bind { [weak self] indexPath in
                 guard let self = self else { return }
-                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.recordTableView.deselectRow(at: indexPath, animated: true)
                 self.viewModel.play(at: indexPath.row)
             }
             .disposed(by: disposeBag)
 
-        tableView.rx.itemDeleted
+        recordTableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
                 self.viewModel.deleteItem(at: indexPath.row)
