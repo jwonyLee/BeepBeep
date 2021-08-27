@@ -29,8 +29,8 @@ class ItemDetailViewController: UIViewController {
     }
 
     private let recordTitleLabel: UILabel = UILabel().then {
-        $0.font = UIFont.pretendardLargeTitle
-        $0.text = "Detail Blah"
+        $0.font = UIFont.pretendardTitle3
+        $0.text = I18N.recordList.localized
         $0.textColor = .label
     }
 
@@ -90,6 +90,7 @@ extension ItemDetailViewController {
 
     private func configureNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = false
+        title = viewModel.item.title
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendardHeadline]
 
         if #available(iOS 14.0, *) {

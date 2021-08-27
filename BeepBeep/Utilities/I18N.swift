@@ -20,6 +20,7 @@ enum I18N: String {
     case modify = "modify"
     case delete = "delete"
     case cancle = "cancle"
+    case recordList = "recordList"
     case actionsheetMessage = "selectOption"
     case addItemTitle = "addItemTitle"
 
