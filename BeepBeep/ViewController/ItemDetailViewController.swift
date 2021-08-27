@@ -19,12 +19,6 @@ class ItemDetailViewController: UIViewController {
     let viewModel: ItemDetailViewModel = ItemDetailViewModel()
 
     // MARK: - View Properties
-    private let titleLabel: UILabel = UILabel().then {
-        $0.font = UIFont.pretendardLargeTitle
-        $0.text = "What is your favorite?"
-        $0.textColor = .label
-    }
-
     private let answerTextView: UITextView = UITextView().then {
         $0.font = UIFont.pretendardBody
         $0.isEditable = false
@@ -53,7 +47,6 @@ class ItemDetailViewController: UIViewController {
         configureViews()
         setTableView()
         setFloatingPanelController()
-        setTitleLabelConstraints()
         setAnswerTextViewConstraints()
         setRecordTitleLabelConstraints()
         setTableViewConstraints()
@@ -131,7 +124,6 @@ extension ItemDetailViewController {
     }
 
     private func configureViews() {
-        view.addSubview(titleLabel)
         view.addSubview(answerTextView)
         view.addSubview(recordTitleLabel)
         view.addSubview(tableView)
@@ -160,36 +152,28 @@ extension ItemDetailViewController {
         floatingPanelController.addPanel(toParent: self)
     }
 
-    private func setTitleLabelConstraints() {
-        titleLabel.snp.makeConstraints {
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
-        }
-    }
-
     private func setAnswerTextViewConstraints() {
         answerTextView.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel.snp.leading)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
-            $0.trailing.equalTo(titleLabel.snp.trailing)
+            $0.leading.equalTo(view.snp.leading).offset(32)
+            $0.top.equalTo(view.snp.topMargin).offset(32)
+            $0.trailing.equalTo(view.snp.trailing).offset(-32)
             $0.height.equalTo(view.safeAreaLayoutGuide.snp.height).multipliedBy(0.3)
         }
     }
 
     private func setRecordTitleLabelConstraints() {
         recordTitleLabel.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel.snp.leading)
+            $0.leading.equalTo(answerTextView.snp.leading)
             $0.top.equalTo(answerTextView.snp.bottom).offset(32)
-            $0.trailing.equalTo(titleLabel.snp.trailing)
+            $0.trailing.equalTo(answerTextView.snp.trailing)
         }
     }
 
     private func setTableViewConstraints() {
         tableView.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel.snp.leading)
+            $0.leading.equalTo(answerTextView.snp.leading)
             $0.top.equalTo(recordTitleLabel.snp.bottom)
-            $0.trailing.equalTo(titleLabel.snp.trailing)
+            $0.trailing.equalTo(answerTextView.snp.trailing)
             $0.bottom.equalToSuperview()
         }
     }
