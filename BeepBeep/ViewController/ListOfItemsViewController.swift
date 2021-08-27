@@ -107,6 +107,7 @@ extension ListOfItemsViewController {
         viewModel.itemObservable
             .bind(to: tableView.rx.items(cellIdentifier: self.identifier)) { _, element, cell in
                 cell.textLabel?.text = element.title
+                cell.accessoryType = .disclosureIndicator
             }
             .disposed(by: disposeBag)
 
