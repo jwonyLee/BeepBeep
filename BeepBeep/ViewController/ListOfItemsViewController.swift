@@ -133,13 +133,16 @@ extension ListOfItemsViewController {
                                                                        message: "질문을 입력해주세요.",
                                                                        preferredStyle: .alert)
         let addAction: UIAlertAction = UIAlertAction(title: I18N.confirm.localized, style: .default, handler: { [weak self] _ in
-            self?.viewModel.addItem(with: alertViewController.textFields?[0].text ?? "")
+            let title: String = alertViewController.textFields?[0].text ?? ""
+            let content: String = alertViewController.textFields?[1].text ?? ""
+            self?.viewModel.addItem(with: title, content: content, interval: TimeInterval())
         })
         let cancleAction: UIAlertAction = UIAlertAction(title: I18N.cancle.localized, style: .cancel)
         alertViewController.addAction(addAction)
         alertViewController.addAction(cancleAction)
 
         alertViewController.addTextField { $0.placeholder = "질문을 입력해주세요." }
+        alertViewController.addTextField { $0.placeholder = "내용을 입력해주세요." }
 
         self.present(alertViewController, animated: true)
     }

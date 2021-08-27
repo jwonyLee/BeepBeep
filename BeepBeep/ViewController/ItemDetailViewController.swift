@@ -27,6 +27,7 @@ class ItemDetailViewController: UIViewController {
         $0.textColor = .label
         $0.layer.cornerRadius = 15
         $0.clipsToBounds = true
+        $0.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
 
     private let recordTitleLabel: UILabel = UILabel().then {
@@ -52,6 +53,7 @@ class ItemDetailViewController: UIViewController {
         setRecordTitleLabelConstraints()
         setTableViewConstraints()
         bindTableView()
+        bindOutput()
     }
 }
 
@@ -178,6 +180,10 @@ extension ItemDetailViewController {
             $0.trailing.equalTo(answerTextView.snp.trailing)
             $0.bottom.equalToSuperview()
         }
+    }
+
+    private func bindOutput() {
+        answerTextView.text = viewModel.item.content
     }
 
     private func bindTableView() {
