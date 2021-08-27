@@ -14,14 +14,12 @@ class CollectionsCell: UICollectionViewCell {
     private var emojiLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.pretendardLargeTitle
-        $0.text = "🌩"
         $0.textColor = .label
     }
 
     private var nameLabel: UILabel = UILabel().then {
         $0.adjustsFontForContentSizeCategory = true
         $0.font = UIFont.pretendardHeadline
-        $0.text = "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum"
         $0.numberOfLines = 1
         $0.textAlignment = .left
         $0.textColor = .label
@@ -68,7 +66,7 @@ extension CollectionsCell {
         emojiLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         emojiLabel.snp.makeConstraints {
             $0.centerY.equalTo(contentView.snp.centerY)
-            $0.leading.equalTo(contentView.snp.leading).offset(8)
+            $0.leading.equalTo(contentView.snp.leading).offset(16)
         }
 
         nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)

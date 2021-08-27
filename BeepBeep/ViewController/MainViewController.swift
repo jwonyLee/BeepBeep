@@ -92,26 +92,26 @@ extension MainViewController {
 
     private func setProgressViewConstraints() {
         progressView.snp.makeConstraints {
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
             $0.height.equalTo(64)
         }
     }
 
     private func setCategoryHeaderLabelConstraints() {
         categoryHeaderLabel.snp.makeConstraints {
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
             $0.top.equalTo(progressView.snp.bottom).offset(32)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
         }
     }
 
     private func setCollectionViewConstraints() {
         collectionView.snp.makeConstraints {
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(16)
-            $0.top.equalTo(categoryHeaderLabel.snp.bottom).offset(16)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-16)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(32)
+            $0.top.equalTo(categoryHeaderLabel.snp.bottom).offset(32)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-32)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
